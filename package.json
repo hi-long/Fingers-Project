@@ -28,7 +28,8 @@
     "nodemon": "^2.0.3"
   },
   "scripts": {
-    "devStart": "nodemon fingers.js"
+    "devStart": "nodemon fingers.js",
+	 "start": "node fingers.js"
   },
   "author": "",
   "license": "ISC"
