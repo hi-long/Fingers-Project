@@ -93,10 +93,10 @@ $('#email, #password, #confirmation').on("input", () => {
 	validateEmail(emailInput, emailValidMessage);
 	validateNickname(nicknameInput);
 	validatePassword(passwordInput, confirmation, passwordValidMessage);
-	console.log(emailValidMessage.text() + " " + passwordValidMessage.text());
-	if(emailValidMessage == "" && passwordValidMessage == "") {
-		submitBtn.attr("disabled", false)
+	console.log(emailValidMessage.text() + " " + passwordInput.text() + " " + confirmation.text());
+	if(emailValidMessage == "" && passwordInput.text() == confirmation.text()) {
+		submitBtn.removeAttr("disabled");
 	} else {
-		submitBtn.attr("disabled", true)
+		submitBtn.attr("disabled", true);
 	}
 })

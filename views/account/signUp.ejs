@@ -3,21 +3,21 @@
 </head>
 	<body>
 	<div class="container" id="sign-up">
-		<form id="sign-up-form" action="/signup" method="post">
+		<form id="sign-up-form" action="/signup" method="post" autocomplete="nope">
 			<div class="form-group">
 				<h3 class="form-header">
 					SIGN UP
 				</h3>
 			</div>
 			<div class="form-group">
-				<input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp" placeholder="Register an email" required="true" minlength="2" autocomplete="off">
+				<input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp" placeholder="Register an email" required="true" minlength="2">
 				<span id="email-valid-message"></span>
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="true" minlength="6" autocomplete="off">
+				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="true" minlength="6">
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control" id="confirmation" name="confirmation" placeholder="Retype password" required="true"  minlength="6">
+				<input type="password" class="form-control" id="confirmation" name="confirmation" placeholder="Retype password" required="true"  minlength="6" autocomplete="off">
 				<span id="password-valid-message"></span>
 			</div>
 			<div class="form-check">
@@ -27,7 +27,7 @@
 				</label>
 			</div>
 			<div class="form-group" id="next-div">
-				<button type="submit" class="btn btn-secondary" disabled="true">Sign up !</button> 
+				<button type="submit" class="btn btn-secondary">Sign up !</button> 
 			</div>
 			<div class="form-group">
 				<p>
