@@ -89,14 +89,14 @@ validateEmail(emailInput, emailValidMessage);
 validateNickname(nicknameInput);
 validatePassword(passwordInput, confirmation, passwordValidMessage);
 
-$('#email, #password, #confirmation').on("input", () => {
-	validateEmail(emailInput, emailValidMessage);
-	validateNickname(nicknameInput);
-	validatePassword(passwordInput, confirmation, passwordValidMessage);
-	console.log(emailValidMessage.text() + " " + passwordInput.text() + " " + confirmation.text());
-	if(emailValidMessage == "" && passwordInput.text() == confirmation.text()) {
-		submitBtn.removeAttr("disabled");
-	} else {
-		submitBtn.attr("disabled", true);
-	}
-})
+// $('#email, #password, #confirmation').on("input", () => {
+// 	validateEmail(emailInput, emailValidMessage);
+// 	validateNickname(nicknameInput);
+// 	validatePassword(passwordInput, confirmation, passwordValidMessage);
+// 	console.log(emailValidMessage.text() + " " + passwordInput.text() + " " + confirmation.text());
+// 	if(emailValidMessage == "" && passwordInput.text() == confirmation.text()) {
+// 		submitBtn.removeAttr("disabled");
+// 	} else {
+// 		submitBtn.attr("disabled", true);
+// 	}
+// })
