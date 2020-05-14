@@ -1,0 +1,146 @@
+body {
+	background-image: url("https://proxy-ap-south1.goorm.io//service/5e8ea0e336ae89208fc4ad3e_dtEot0Pl0y5uRoQXAnq.run-ap-south1.goorm.io/9080//file/load/annie-spratt-d7q5uqudtzA-unsplash.jpg?path=d29ya3NwYWNlJTJGRmluZ2VycyUyRnB1YmxpYyUyRmRpc2NvdmVyeSUyRmFubmllLXNwcmF0dC1kN3E1dXF1ZHR6QS11bnNwbGFzaC5qcGc=&docker_id=dtEot0Pl0y5uRoQXAnq&secure_session_id=I5uvmPqP_STuBo3Z9zI0XLnHuU4Wl4m_");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.main-container {
+	margin-top: 8rem;
+}
+
+.btn {
+	float: right;
+	cursor: pointer;
+}
+
+.post {
+	position: relative;
+	width: 80%;
+	padding-bottom: 50%;
+	border: 0;
+	margin: auto;
+	margin-bottom: 10rem;
+	overflow: hidden;
+}
+
+canvas {
+	position: absolute;
+	width: 100%;
+	height: 88%;
+	left: 0; right: 0; top: 0; bottom: 0;
+	border-bottom: 1px solid antiquewhite;
+	border-left: 1px solid antiquewhite;
+	border-right: 1px solid antiquewhite;
+	border-radius: 5px;
+	background-color: white;
+	z-index: 1;
+}
+
+/*-------------------*/
+/* USER */
+/*-------------------*/
+.header {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 12%;
+	padding: 0 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	border-bottom: 1px solid antiquewhite;
+	border-left: 1px solid antiquewhite;
+	border-right: 1px solid antiquewhite;
+	border-radius: 5px;
+	background-color: floralwhite;
+	z-index: 1;
+}
+
+.header img:nth-child(1) {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 40px;
+}
+
+.header p {
+	margin-left: 1rem;
+	margin-bottom: 0;
+	font-size: 1.5rem;
+	font-family: 'Neuton', serif;
+	line-height: 40px;
+	letter-spacing: 0.8px;
+}
+
+.header span {
+	font-size: 1.3rem;
+}
+
+/*-------------------*/
+/* COMMENT */
+/*-------------------*/
+.comments-div {
+	position: absolute;
+	bottom: 12%;
+	width: 100%;
+	max-height: 50%;
+	border-left: 1px solid antiquewhite;
+	border-right: 1px solid antiquewhite;
+	border-radius: 5px;
+	z-index: 1;
+	background-color: oldlace;
+	overflow: auto;
+	transition: 2s;
+}
+
+.div-hide {
+	bottom: -50% !important;
+}
+
+.comments-div::-webkit-scrollbar {
+    display: none !important;
+}
+
+.comment {
+	padding: 0rem 1rem 0rem 1rem;
+}
+
+.user {
+	display: inline-flex !important;
+}
+
+h5 {
+	margin: 0;
+	padding-left: 0.5rem;
+	line-height: 2.5rem;
+	font-family: 'Neuton', serif;
+}
+.user .date {
+	padding: 3rem 0;
+	margin-bottom: 0;
+}
+
+
+.comment-content {
+	padding: 0;
+	color: darkslategray;
+    font-size: larger;
+	word-break: break-all;
+}
+
+.comment-date {
+	font-style: oblique;
+    color: rosybrown;
+    font-weight: 600;
+	float: right;
+}
+
+.profile {
+	height: 2.5rem;
+	width: 2.5rem;
+	border-radius: 50%
+}
+
+hr {
+	margin: 0.5rem;
+}

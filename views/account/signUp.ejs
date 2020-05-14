@@ -1,0 +1,42 @@
+<%- include ("../partials/header.ejs") %>
+<link rel="stylesheet" type="text/css" href="account/SignUp/SignUp.css">
+</head>
+	<body>
+	<div class="container" id="sign-up">
+		<form id="sign-up-form" action="/signup" method="post">
+			<div class="form-group">
+				<h3 class="form-header">
+					SIGN UP
+				</h3>
+			</div>
+			<div class="form-group">
+				<input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp" placeholder="Register an email" required="true" minlength="2" autocomplete="off">
+				<span id="email-valid-message"></span>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="true" minlength="6" autocomplete="off">
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="confirmation" name="confirmation" placeholder="Retype password" required="true"  minlength="6">
+				<span id="password-valid-message"></span>
+			</div>
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" id="exampleCheck1" required="true">
+				<label class="form-check-label" for="exampleCheck1">
+					I agree to participate in with the honestest and most respect !
+				</label>
+			</div>
+			<div class="form-group" id="next-div">
+				<button type="submit" class="btn btn-secondary" disabled="true">Sign up !</button> 
+			</div>
+			<div class="form-group">
+				<p>
+					You may want to <a href="/signin"> sign in </a> or <a href="forgot"> reset your password</a>
+				</p>
+			</div>
+		</form>
+	</div>
+	<%- include ("../partials/footer.ejs") %>
+	<script type="module" src="account/SignUp/SignUp.js"></script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<%- include ("../partials/header.ejs") %>
+	<link rel="stylesheet" type="text/css" href="/post/edit/edit.css">
+</head>
+<body>
+		<div class="container">
+		<div class="row">
+			<div class="col-1" id="left"></div>
+			<div class="col-6">
+				<div id="image" style="background-image: url(<%= post.cover %>)">
+					<div id="tools">
+						<i class="fas fa-wrench"></i>
+						<i class="fas fa-sync-alt" id="rotate"></i>	
+						<i class="fas fa-expand" id="expand"></i>
+						<i class="fas fa-compress" id="compress"></i>
+					</div>
+				</div>
+			</div>
+			<div class="col-4" id="info">
+				<form action="/post/<%= post.id %>/edit?_method=put" method="post" enctype="multipart/form-data">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
+						<label class="custom-file-label" for="validatedCustomFile">Upload your best cover!</label>
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" id="exampleFormControlTextarea1" name="newDescription" rows="5"> <%= post.description %> </textarea>
+						<div id="action">
+							<form action="/post/<%= post.id %>/delete?_method=delete" method="post">
+								<button type="submit" id="delete">
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</form>
+							
+							<div class="right-btn">
+								<a href="/post/<%= post.id %>"><i class="fas fa-times-circle"></i></a>
+								<button type="submit">
+									<i class="fas fa-chevron-circle-up"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+			<div class="col-1" id="right"></div>
+		</div>
+	</div>
+	<%- include ("../partials/touch.ejs") %>
+	<%- include ("../partials/footer.ejs") %>
+	<script type="module" src="/post/edit/edit.js"></script>
+</body>
+</html>

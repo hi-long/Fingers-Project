@@ -1,0 +1,50 @@
+	<%- include ("../partials/header.ejs") %>
+	<link rel="stylesheet" type="text/css" href="/creation/new/new.css">	
+</head>
+<body>
+	<div class="container" id="user-info">
+		<div class="row">
+			<div class="col-1" id="left"></div>
+			<div class="col-6">
+				<div id="image">
+					<div id="tools">
+						<i class="fas fa-wrench"></i>
+						<i class="fas fa-sync-alt" id="rotate"></i>	
+						<i class="fas fa-expand" id="expand"></i>
+						<i class="fas fa-compress" id="compress"></i>
+					</div>
+				</div>
+			</div>
+			<div class="col-4" id="info">
+				<form action="/new" method="post" enctype="multipart/form-data">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="image" name="image" accept="image/*" required>
+						<label class="custom-file-label" for="validatedCustomFile">Upload your best cover!</label>
+						<div class="invalid-feedback">Example invalid custom file feedback</div>
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="5" placeholder="Share your thinking . . . " required minlength="2"></textarea>
+						<div id="action">
+							<div class="right-btn">
+								<a href="/">
+									<i class="fas fa-times-circle"></i>
+								</a>
+								<button type="submit">
+									<i class="fas fa-chevron-circle-up"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+			<div class="col-1" id="right"></div>
+		</div>
+	</div>
+	<%- include ("../partials/touch.ejs") %>
+	<%- include ("../partials/footer.ejs") %>
+	<script type="text/javascript" src="/creation/new/new.js"></script>
+</body>
+</html>
+		
+	

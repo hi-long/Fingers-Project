@@ -1,0 +1,79 @@
+<%- include ("../partials/header.ejs") %>
+	<link rel="stylesheet" type="text/css" href="/setting/show.css">
+</head>
+<body>
+	<%- include ("../partials/navbar.ejs") %>
+	<div class="container main">
+		<div class="row">
+			<div class="col-sm-4 entity">
+				<ul class="list-group">
+					<li class="list-group-item profile-enter">Profile</li>
+					<li class="list-group-item password-enter">Change password</li>
+					<a href="/logout">
+						<li class="list-group-item password-enter">Logout</li>
+					</a>
+				</ul>
+			</div>
+			<div class="col-sm-8 attribute">
+<!-- 	PROFILE  	-->
+				<div class="row profile">
+					<div class="col-2"></div>
+					<div class="col-8"> 
+						<form action="/setting?_method=put" method="post" enctype="multipart/form-data">
+							<div id="image-preview" style="background-image: url(<%= user.cover %>)">
+								<div id="tools">
+									<i class="fas fa-wrench"></i>
+									<i class="fas fa-sync-alt" id="rotate"></i>	
+									<i class="fas fa-expand" id="expand"></i>
+									<i class="fas fa-compress" id="compress"></i>
+								</div>
+							</div>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
+								<label class="custom-file-label" for="validatedCustomFile">Upload your best cover!</label>
+							</div>
+							<div class="information">
+								<div class="form-group">
+									<input type="text" class="form-control" id="nickname" name="newNickname" placeholder="<%= user.nickname %>">
+								</div>
+								<div class="form-group">
+									<textarea style="width: 100%" name="newDescription" rows="1" placeholder="Introduction"><%= user.description %></textarea>
+								</div>
+								<div class="form-group save-btn">
+									<button type="submit" class="btn btn-secondary">Save</button>					
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-2"></div>
+				</div>
+<!-- 	PASSWORD			 -->
+				<div class="row password">
+					<div class="col-3"></div>
+					<div class="col-6">
+						<form action="/setting/change/password?_method=put" method="post">
+							<div class="form-group">
+								<input type="password" id="currentPassword" name="oldPassword" class="form-control" placeholder="Current Password">
+							</div>
+							<div class="form-group">
+								<input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="New Password" minlength="6">
+							</div>
+							<div class="form-group">
+								<input type="password" id="newPasswordConfirmation" class="form-control" placeholder="Retype Password" minlength="6">
+								<span id="confirmation-message"></span>
+							</div>
+							<div class="form-group save-btn">
+								<button type="submit" id="password-submit" class="btn btn-secondary">Save</button>					
+							</div>
+						</form>
+					</div>
+					<div class="col-3"></div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<%- include ("../partials/touch.ejs") %>
+	<%- include ("../partials/footer.ejs") %>
+	<script type="module" src="/setting/show.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<%- include ("../partials/header.ejs") %>
+	<link rel="stylesheet" type="text/css" href="/account/SignUp/SignUp.css">
+
+</head>
+<body>
+<div class="container" id="user-info">
+		<div class="row">
+			<div class="col-1" id="left"></div>
+			<div class="col-6">
+				<div id="image-preview">
+					
+				</div>
+				<div id="tools">
+					<i class="fas fa-wrench"></i>
+					<i class="fas fa-sync-alt" id="rotate"></i>	
+					<i class="fas fa-expand" id="expand"></i>
+					<i class="fas fa-compress" id="compress"></i>
+				</div>
+			</div>
+			<div class="col-4" id="info">
+				<form action="/<%= user.id %>/info?_method=put" method="post" enctype="multipart/form-data">
+					<div class="form-group custom-file">
+						<input type="file" class="custom-file-input" id="image" name="image" accept="image/*" required>
+						<label class="custom-file-label" for="validatedCustomFile">Upload your best profile cover!</label>
+					</div>
+					<div class="form-group">
+						<input type="text" class="custom-file-input" id="nickname" name="nickname" required minlength="2" maxlength="16">
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="5" placeholder="Share others a bit about you . . ."></textarea>
+					</div>
+					<div id="action">
+						<a href="/signin">
+							<i class="fas fa-times-circle" id="back-btn"></i>
+						</a>
+						<button type="submit">
+							<i class="fas fa-chevron-circle-up" id="upload-btn"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-1" id="right"></div>
+		</div>
+	</div>
+
+	<%- include ("../partials/footer.ejs") %>
+	<script type="module" src="/account/SignUp/SignUp.js"></script>
+	</body>
+</html>

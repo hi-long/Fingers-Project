@@ -1,0 +1,76 @@
+<%- include ("../partials/header.ejs") %>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<link rel="stylesheet" type="text/css" href="homepage/index.css">
+	</head>
+
+	<body>
+		<%- include ("../partials/navbar.ejs") %>
+		<div id="swup" class="container-fluid transition-fade">
+			<div class="row">
+				<div class="col-1 navigation-btn" id="left"></div>
+				<div class="col-10">
+					<div class="container profile">
+						<div class="row">
+							<div class="col-4 profile-img">
+								<img src="<%= currentUser.cover %>">
+							</div>
+							<div class="col-8 profile-info d-flex flex-column">
+								<div class="username d-flex align-items-center">
+									<h1 class="user-nickname" data-user-id="<%= currentUser.id %>"><%= currentUser.nickname %></h1>
+									<% if(currentUser.id != user.id){ %>
+										<% if(followed == true) { %>
+											<button type="button" id="follow-btn" class="btn btn-warning">Followed</button>
+										<% } else { %>
+											<button type="button" id="follow-btn" class="btn btn-success">Follow</button>
+										<% } %>
+									<% } %>
+								</div>
+								<% if(currentUser.posts.length <= 1) { %>
+									<p style="font-size: 1.3rem; margin: 0;"><strong><%= currentUser.posts.length %></strong> <span>  post</span>						
+								<% } else { %>
+									<p  style="font-size: 1.3rem; margin: 0;"><strong><%= currentUser.posts.length %></strong> <span>  posts</span>
+								<% } %>
+								<% if(currentUser.followers.length <= 1) { %>
+									<span id="n-o-followers" style="font-weight:700;"><%= currentUser.followers.length %></span> follower</p>
+								<% } else { %>
+									<span id="n-o-followers" style="font-weight:700;"><%= currentUser.followers.length %></span> follower </p>
+								<% } %>
+								<p>	 <%= currentUser.description %> </p>
+							</div>
+						</div>
+							<div class="container">
+							<hr>
+						</div>
+						
+						<div class="square-container container">
+							<% currentUser.posts.forEach((post) => { %>
+								<div class="square" data-aos="zooms-in">
+									<div class="content">
+										<a href="/post/<%= post.id %>">
+											<img id="post-img" src="<%= post.cover %>">
+										</a>
+										<div id="reaction">
+											<i class="far fa-grin-wink">
+												<%= post.likes.length %>
+											</i>
+											<i class="fas fa-comment-alt">
+												<%= post.comments.length %>
+											</i>
+										</div>
+									</div>
+								</div>
+							<% }) %>
+						</div>
+					</div>
+					<div class="col-1 navigation-btn" id="right"></div>
+				</div>
+			</div>
+		</div>
+	<%- include ("../partials/touch.ejs") %>
+	<%- include ("../partials/footer.ejs") %>
+	<script>
+		AOS.init();
+	</script>	
+	<script type="module" src="homepage/index.js"></script>
+</body>
+</html>

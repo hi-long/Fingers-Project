@@ -1,0 +1,201 @@
+body {
+	background-image: url("https://images.unsplash.com/photo-1445375011782-2384686778a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow-x: hidden;
+	transition: 2s;
+}
+
+div {
+	padding-bottom: 1.5rem;
+	margin-bottom: 0;
+}
+
+input {
+	padding-left: 0.5rem !important;
+}
+
+span {
+	padding-left: 0.5rem;
+}
+
+.form-group:first-child h3 {
+	text-align: center;
+}
+
+#sign-up {
+	transition: 5s;
+	background-image: 
+}
+
+#sign-up img {
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	min-width: 100%;
+	min-height: 100%;
+	opacity: 0.8;
+	object-fit: cover;
+}
+
+#sign-up form {
+	position: absolute;
+	width: 40%;
+	top: 48%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 1rem;
+	border-radius: 1rem;
+	background-color: white;
+	box-shadow: 1rem 1rem #a5a7a852;
+	transition: 1s;
+}
+
+button[type="submit"]::after {
+	background: whitesmoke;
+	content: '';
+	position: absolute;
+	z-index: -1;
+	height: 0;
+	left: 0;
+	top: 0;
+	width: 100%;
+	border-radius: 1rem;
+	transition: 2s;
+}
+
+
+button[type="submit"]:hover::after {
+	height: 100%;
+}
+
+.form-hide {
+	left: -50% !important;
+	opacity: 0.3 !important;
+}
+
+#sign-up #next-div {
+	border-bottom: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-size: 2rem;
+	text-align: center;
+}
+
+form div:last-child p {
+	text-align: center;
+	margin: 0;
+	margin-top: 1rem;
+	margin-bottom: -1.5rem;
+	font-size: inherit;
+}
+
+form div:last-child a {
+	color: burlywood;
+}
+
+button[type=submit] {
+	width: 100%;
+	padding: 0.5rem;
+}
+
+/*
+USER-INFO DIV
+*/
+
+#user-info {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: 2s;
+}
+
+.user-info-show {
+	right: 15% !important;
+	display: block !important;
+}
+
+#user-info div {
+	padding-right: 0 !important;
+}
+
+#user-info #image-preview {
+	padding: 50% 0; 
+	border: 0;
+	border-radius: 50%;
+	background-color: lightgray;
+	background-image: url("https://images.unsplash.com/photo-1533312585956-de6ab1266f1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.custom-file-input {
+	padding: 0 !important;
+}
+
+#user-info #tools {
+	display: none;
+	position: absolute;
+	top: 45%;
+	left: 44%;
+	padding-bottom: 0;
+	font-size: 2.5rem;
+	text-align: center;
+	color: antiquewhite;
+	background-color: #deb8873b;
+	border-radius: 40px;
+	transition: 0.5s;
+}
+
+#user-info #tools i {
+	padding: 1rem;
+}
+
+#user-info #compress, #expand, #rotate {
+	display: none;
+	transition: 0.5s;
+}
+
+#user-info .isDisplayed {
+	display: inline-block !important;
+}
+
+#user-info #tools:hover {
+	position: absolute;
+	top: 45%;
+	left: 29.5%;
+}
+
+#user-info #info {
+	margin: 0 1rem;
+}
+
+#user-info .custom-file {
+	margin-bottom: 1rem;
+}
+
+#user-info #action {
+	font-size: 2.5rem;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+#user-info #action i {
+	color: azure;
+	border-radius: 40px;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
+#user-info #action i:hover {
+	color: #09326473;
+	padding: 1rem;
+	background-color: darkgray;
+}
+
+input[name=nickname] {
+	opacity: 1;
+}

@@ -1,0 +1,123 @@
+<%- include ("../partials/header.ejs") %>
+	<link rel="stylesheet" type="text/css" href="/post/show/show.css">
+	<link rel="stylesheet" type="text/css" href="/loading/index.css">
+</head>
+<body>
+	<%- include ("../partials/loading.ejs") %>
+	<canvas id="myCanvas" resize data-post-id="<%= post.id %>" data-song="<%= song.id %>"></canvas>
+
+	<div class="container alert alert-warning" role="alert">
+	  	You can press "ENTER" to start, pause, replay . . . 
+	</div>
+
+	<div class="" id="ulti-btns">
+		<i class="fas fa-fan ul-btn" id="toggle-btn-trigger"></i>
+		<a href="/<%= post.user.id %>">
+			<i class="fas fa-times-circle ul-btn toggle-btn" id="escape"></i>
+		</a>
+		<a href="#">
+			<i class="fas fa-arrow-alt-circle-left ul-btn toggle-btn" id="previous"></i>
+		</a>
+		<a href="#">
+			<i class="fas fa-arrow-alt-circle-right ul-btn toggle-btn" id="next"></i>
+		</a>
+	</div>
+
+	<div class="" id="ulti-btn">
+		<i class="fas fa-arrow-alt-circle-up ul-btn" id="show-up"></i>
+		<i class="fas fa-arrow-alt-circle-down hide ul-btn" id="hide"></i>
+	</div>
+
+	<div class="container-fluid" id="post-content">
+		<div class="row">
+			<div class="col-1" id="left"></div>
+			<div class="col-3"></div>
+			<div class="col-4" id="info">
+				<header>
+					<a href="/<%= post.user.id %>">
+						<img class="profile" src="<%= post.user.cover %>">
+						<h3 class="user-nickname"><%= post.user.nickname %></h3>
+					</a>
+					<div id="reaction-btn">
+						<% if(liked == true){ %>
+							<img class="like-btn" src="https://img.icons8.com/cotton/36/000000/like--v3.png"/>
+						<% } else { %>
+							<img class="like-btn" src="https://img.icons8.com/cotton/36/000000/like--v4.png"/>
+						<% } %>
+						<a href="/post/<%= post.id %>/edit">
+							<img src="https://img.icons8.com/flat_round/36/000000/edit-file.png"/>
+						</a>
+					</div>
+				</header>
+				<hr>
+				<div id="body">
+					<div id="introduction">
+						<p class="post-description"><%= post.description %></p>	
+						<div id="like-comment">
+							<% if(liked == true){ %>
+								<img class="like-btn" src="https://img.icons8.com/cotton/36/000000/like--v3.png"/>
+							<% } else { %>
+								<img class="like-btn" src="https://img.icons8.com/cotton/36/000000/like--v4.png"/>
+							<% } %> <span id="n-o-likes"><%= post.likes.length %></span>
+							<img src="https://img.icons8.com/flat_round/36/000000/quote.png"/><span id="n-o-comments"><%= post.comments.length %></span>
+						</div>
+					</div>
+					<hr>
+					
+					<div id="comments-div">
+						<% post.comments.forEach((comment) => { %>
+							<div class="comment">
+								<a href="/<%= comment.user.id %>">
+									<div class="user">
+										<img class="profile" src="<%= comment.user.cover %>">
+										<h5 class="user-nickname"><%= comment.user.nickname %></h5>
+									</div>
+								</a>
+								<div class="date row">
+									<div class="col-9">
+										<p class="comment-content"><%= comment.content %></p>
+									</div>
+									<div class="col-3">
+										<p class="comment-date"><%= Date.now() - comment.date %></p>
+									</div>
+								</div>
+							</div>
+							<hr>
+						<% }) %>
+					</div>
+				</div>
+				<hr>
+				<div id="interaction">
+					<textarea class="form-control" rows="1" placeholder="Share your thinking"></textarea>
+					<button type="button" class="btn btn-light">Put it up!</button>
+				</div>
+			</div>
+			<div class="col-3"></div>
+			<div class="col-1" id="right"></div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div id="liked-users">
+			<div>
+				<i class="fas fa-times-circle" id="likedDiv-escape"></i>
+			</div>
+				<div id="likedDiv-content">
+					<% post.likes.forEach((like) => { %>
+					<div class="user">
+						<a href="/<%= like.user.id%>">
+							<img class="profile" src="<%= like.user.cover%>">
+							<p class="user-nickname"><%= like.user.nickname%></p>
+						</a>
+					</div>
+				</div>
+			<% }) %>
+		</div> 
+	</div>
+
+	<%- include ("../partials/touch.ejs") %>
+	<%- include ("../partials/footer.ejs") %>
+	<script type="module" src="/loading/index.js"></script>
+	<script type="module" src="/post/show/show.js"></script>
+	</body>
+</html>

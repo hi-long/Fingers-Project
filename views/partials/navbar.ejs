@@ -1,0 +1,79 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+	<div class="container">
+		<a class="navbar-brand" href="/<%= user.id %>" data-swup-preload>Fingers</a>
+		<div id="search-div">
+			<input id="search-input" type="search" placeholder="Search">
+			<a id="search-btn">
+				<i class="fas fa-search"></i>
+			</a>
+			<div id="result"></div>
+		</div>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item icon-toggle" id="first">
+				<a class="nav-link" href="/" data-swup-preload>
+					<i class="far fa-play-circle"></i>
+				</a>
+			</li>
+			<li class="nav-item" id="icon-toggle-trigger">
+				<a class="nav-link" href="/discovery" data-swup-preload>
+					<i class="far fa-compass"></i>
+				</a>
+			</li>
+			<li class="nav-item dropdown icon-toggle" id="second">
+				<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="far fa-bell"><span id="n-o-unseen" style="font-size: large;"><%= numberOfUnseenNotis %></span></i>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+					<% notifications.forEach((notification) => { %>
+						<div class="row noti" data-noti-id="<%= notification.id %>">
+							<% if(notification.like){ %>
+								<a class="nav-link" href="/post/<%= notification.post.id %>" data-swup-preload>
+									<div class="col-2">	<img src="<%= notification.like.user.cover %>"> </div>
+									<div class="col-8 content">
+										<% if(notification.seen){ %>
+											<p> <%= notification.like.user.nickname %> liked your post ! </p>
+										<% } else { %>
+											<p><strong><%= notification.like.user.nickname %> liked your post ! </strong></p>
+										<% } %>
+									</div>
+									<div class="col-2">	<img src="<%= notification.post.cover %>"> </div>
+								</a>
+							<% } %>
+							<% if(notification.comment){ %>
+								<a class="nav-link" href="/post/<%= notification.post.id %>" data-swup-preload>
+									<div class="col-2">	<img src="<%= notification.comment.user.cover %>"> </div>
+									<div class="col-8 content">
+										<% if(notification.seen){ %>
+											<p> <%= notification.comment.user.nickname %> commented your post ! </p>
+										<% } else { %>
+											<p><strong><%= notification.comment.user.nickname %> commented your post !</strong></p>
+										<% } %>
+									</div>
+									<div class="col-2">	<img src="<%= notification.post.cover %>"> </div>
+								</a>
+							<% } %>
+							<% if(notification.folow){ %>
+								<a class="nav-link" href="/<%= notification.follow.from.id %>" data-swup-preload>
+									<div class="col-2">	<img src="<%= notification.follow.from.cover %>"> </div>
+									<div class="col-8 content">
+										<% if(notification.seen){ %>
+											<p> <%= notification.follow.from.nickname %> started following you ! </p>
+										<% } else { %>
+											<p><strong> <%= notification.follow.from.nickname %> started following you ! </strong></p>
+										<% } %>
+									</div>
+								</a>
+							<% } %>
+						</div>
+					<div class="dropdown-divider" style="width: 100%;"></div>
+					<% }) %>
+				</div>
+			</li>
+			<li class="nav-item icon-toggle" id="third">
+				<a class="nav-link" href="/setting" data-swup-preload>
+					<i class="far fa-user-circle"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav> 

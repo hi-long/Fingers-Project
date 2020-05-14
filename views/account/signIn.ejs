@@ -1,0 +1,30 @@
+	<%- include ("../partials/header.ejs") %>
+	<link rel="stylesheet" type="text/css" href="/account/SignIn/SignIn.css">
+</head>
+	<body>
+		<div class="container-fluid thumbnail">
+			<form action='/signin' method="post">
+				<div class="form-group form-header">
+					SIGN IN
+				</div>
+				<div class="form-group">
+					<input type="email" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" name="password" placeholder="Password" required minlength="6">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-secondary">Submit</button>
+				</div>
+				<div class="form-group">
+					<p>
+						You may want to <a href="/signup">sign up</a> or <a href="forgot">reset your password</a> ?
+					</p>
+				</div>
+			</form>
+		</div>
+
+		<%- include ("../partials/footer.ejs") %>
+		<script type="module" src="/account/SignIn/SignIn.js"></script>
+	</body>
+	</html>
