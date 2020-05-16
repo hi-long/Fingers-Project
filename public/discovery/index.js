@@ -114,7 +114,8 @@ let productCanvas = $('.product');
 productCanvas.on('click', () => {
 	
 	let clickedCanvas = $(event.currentTarget),
-		onPlaying = clickedCanvas.attr("data-is-playing");
+		onPlaying = clickedCanvas.attr("data-is-playing"),
+		canvasBackground = clickedCanvas.css("backgroundImage");
 	const song_id = clickedCanvas.attr('id');
 	
 	if(onPlaying == "true"){
@@ -123,12 +124,14 @@ productCanvas.on('click', () => {
 		onPlaying = "true";
 	}
 	
-	clickedCanvas.attr("data-is-playing", onPlaying);	
+	clickedCanvas.attr("data-is-playing", onPlaying);
+	clickedCanvas.css("backgroundImage", "none");
 	
 	axios
 		.get(`/song/${song_id}`)
 		.then((response) => {
 			// handle success
+			
 			let song = response.data;
 		
 			paper.setup(song_id);
@@ -150,6 +153,7 @@ productCanvas.on('click', () => {
 								// alert.fadeToggle('1000');
 								clickedCanvas.attr("data-is-playing", "false");
 								clickedCanvas.attr("data-pause-pos", "0");
+								clickedCanvas.css("backgroundImage", canvasBackground);
 							}, 2000);
 						}
 						if (i < timeCores.length - 1) {

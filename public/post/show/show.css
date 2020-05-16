@@ -26,6 +26,12 @@ hr {
     display: none !important;
 }
 
+canvas {
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+}
+
 canvas[resize] {
     width: 100%;
     height: 100%;

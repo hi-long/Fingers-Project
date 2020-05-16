@@ -4,7 +4,7 @@
 </head>
 <body>
 	<%- include ("../partials/loading.ejs") %>
-	<canvas id="myCanvas" resize data-post-id="<%= post.id %>" data-song="<%= song.id %>"></canvas>
+	<canvas id="myCanvas"  style="background-image: url('<%= post.cover %>')" resize data-post-id="<%= post.id %>" data-song="<%= song.id %>"></canvas>
 
 	<div class="container alert alert-warning" role="alert">
 	  	You can press "ENTER" to start, pause, replay . . . 

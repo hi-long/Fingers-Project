@@ -10,7 +10,7 @@
 		<% followings.forEach((following) => { %>
 			<% following.posts.forEach((post) => { %>
 				<div class="post" data-aos="zoom-in-up">
-					<canvas  id="<%= post.song.id %>" class="product" data-post-id="<%= post.id %>" data-is-playing="false" data-pause-pos="0"></canvas>
+					<canvas  id="<%= post.song.id %>" class="product" style="background-image: url('<%= post.cover %>')" data-post-id="<%= post.id %>" data-is-playing="false" data-pause-pos="0"></canvas>
 					<div class="header">
 						<img src="<%= following.cover %>"/>
 						<p  class="user-nickname"> <%= following.nickname %> </p>				
@@ -22,6 +22,9 @@
 						<span class="n-o-likes"><%= post.likes.length %></span>
 						<img class="btn comment-btn" src="https://img.icons8.com/flat_round/36/000000/quote.png"/>
 						<span class="n-o-comments"><%= post.comments.length %></span>
+						<a href="/post/<%= post.id %>" style="float: right; margin-left: 1rem;">
+							<img src="https://img.icons8.com/flat_round/36/000000/circled-right-2--v1.png"/>
+						</a>
 					</div>
 					<div class="comments-div div-hide">
 						<div class="comments-part">

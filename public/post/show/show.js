@@ -33,7 +33,9 @@ $("textarea").on("keydown", (event) => {
 	}
 })
 
-const songId = $("canvas").data("song");
+const canvas = $("canvas"),
+	  canvasBackground = canvas.css("backgroundImage"),
+	  songId = canvas.data("song");
 
 axios
 	.get(`/song/${songId}`)
@@ -45,7 +47,7 @@ axios
 	
 		paper.setup('myCanvas');
 	
-		canvasControlling_PostRoute(song, tool, alert, onPlaying, view, theme);
+		canvasControlling_PostRoute(canvas, canvasBackground, song, tool, alert, onPlaying, view, theme);
 	})
 	.catch(function(error) {
 		// handle error

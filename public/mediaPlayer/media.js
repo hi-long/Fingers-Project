@@ -213,7 +213,7 @@ var Timer = function(callback, delay) {
 	this.resume();
 };
 
-function canvasControlling_PostRoute(song, tool, alert, onPlaying, view, theme) {
+function canvasControlling_PostRoute(canvas, background, song, tool, alert, onPlaying, view, theme) {
 	var circles = [],
 		sounds = [],
 		keys = song.sounds,
@@ -226,6 +226,7 @@ function canvasControlling_PostRoute(song, tool, alert, onPlaying, view, theme) 
 		if (event.key == 'enter') {
 			alert.fadeToggle('slow');
 			onPlaying = !onPlaying;
+			canvas.css("backgroundImage", "none");
 			(function playSounds(i) {
 				if (onPlaying) {
 					setTimeout(function() {
@@ -237,6 +238,7 @@ function canvasControlling_PostRoute(song, tool, alert, onPlaying, view, theme) 
 								alert.fadeToggle('1000');
 								onPlaying = !onPlaying;
 								pausePos = 0;
+								canvas.css("backgroundImage", background);
 							}, 2000);
 						}
 						if (i < timeCores.length - 1) {
