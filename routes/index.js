@@ -52,14 +52,19 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', async (req, res) => {
 	try {
-		const newUser = await User.register({ username: req.body.username }, req.body.password);
-		passport.authenticate('local')(req, res, () => {
-			res.redirect(`/${req.user.id}/info`);
-		});
+		if(req.body.password == req.body.confirmation){
+			const newUser = await User.register({ username: req.body.username }, req.body.password);
+			passport.authenticate('local')(req, res, () => {
+				res.redirect(`/${req.user.id}/info`);
+			});
+		} else {
+			req.flash('error', 'Retyped password incorrect !');
+			res.redirect('/signup');
+		}
 	} catch (err) {
 		console.log(err);
-		req.flash('error', 'We failed to sign you up :(');
-		return res.render('account/signUp');
+		req.flash('error', 'We failed to sign you up :(, maybe this mail has already been registered !');
+		res.redirect('/signup');
 	}
 });
 //Log out

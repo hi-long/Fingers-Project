@@ -1,5 +1,15 @@
 import {timeConverter} from "./converter.js"
 
+export function deleteComment(postId, commentId, commentDiv) {
+	axios.delete(`/post/${postId}/comment/${commentId}/delete`)
+		.then((response) => {
+			console.log("Comment deleted !")
+		})
+		.catch((err) => {
+			console.log(err);
+		})
+}
+
 export function newComment(response, numberOfComments, commentsDiv){
 	console.log(response);
 	var commentedUser = {
@@ -32,3 +42,5 @@ export function newComment(response, numberOfComments, commentsDiv){
 		
 	)
 }
+
+export function like()

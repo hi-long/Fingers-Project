@@ -1,6 +1,7 @@
 import {timeConverter} from '/mediaPlayer/converter.js'
 import theme, {Timer, canvasControlling_PostRoute} from '/mediaPlayer/media.js'
 import {newComment} from '/mediaPlayer/newInteractions.js'
+import {deleteComment} from '/mediaPlayer/handleInteractions.js'
 
 //---------------------------//
 // LOADING
@@ -76,7 +77,6 @@ const postId = $("canvas").attr("data-post-id");
 
 axios.get(`/post/${postId}/next`)
 	.then((response) => {
-		console.log(response);
 		const nextPostId = response.data;
 		nextPost.parent().attr("href", `/post/${nextPostId}`);
 	})
@@ -181,6 +181,14 @@ hideBtn.on('click', function() {
 	hideBtn.toggleClass('hide');
 });
 
+// DELETE COMMENT
+const deleteBtn = $(".delete-comment-btn");
 
-
+commentsDiv.on("click", ".delete-comment-btn", (event) => {
+	let thisBtn = $(event.currentTarget),
+		commentId = thisBtn.parent().attr("data-comment-id");
+	deleteComment(postId, commentId, commentsDiv);
+	thisBtn.parent().fadeOut("slow");
+	numberOfComments.text(parseInt(numberOfComments.text()) - 1);
+})
 

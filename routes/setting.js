@@ -35,7 +35,12 @@ router.get('/setting', isSignedIn, async (req, res) => {
 			.populate('notifications')
 			.populate({
 				path: 'notifications',
-				populate: { path: 'post' }
+				populate: { 
+					path: 'post',
+					populate: {
+						path: 'user'
+					}
+				}
 			})
 			.populate({
 				path: 'notifications',
@@ -50,6 +55,15 @@ router.get('/setting', isSignedIn, async (req, res) => {
 					path: 'follow',
 					populate: {path : 'from to'}
 				})
+			})
+			.populate({
+				path: 'notifications',
+				populate: {
+					path: 'follow',
+					populate: {
+						path: 'from to'
+					}
+				}
 			})
 		let numberOfUnseenNotis = 0;
 		for (let i = 0; i < currentAccount.notifications.length; i++) {

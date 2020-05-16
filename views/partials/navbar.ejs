@@ -24,7 +24,7 @@
 					<i class="far fa-bell"><span id="n-o-unseen" style="font-size: large;"><%= numberOfUnseenNotis %></span></i>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-					<% notifications.forEach((notification) => { %>
+					<% notifications.reverse().forEach((notification) => { %>
 						<div class="row noti" data-noti-id="<%= notification.id %>">
 							<% if(notification.like){ %>
 								<a class="nav-link" href="/post/<%= notification.post.id %>" data-swup-preload>
@@ -52,7 +52,7 @@
 									<div class="col-2">	<img src="<%= notification.post.cover %>"> </div>
 								</a>
 							<% } %>
-							<% if(notification.folow){ %>
+							<% if(notification.follow != null && notification.follow != undefined){ %>
 								<a class="nav-link" href="/<%= notification.follow.from.id %>" data-swup-preload>
 									<div class="col-2">	<img src="<%= notification.follow.from.cover %>"> </div>
 									<div class="col-8 content">
@@ -60,6 +60,18 @@
 											<p> <%= notification.follow.from.nickname %> started following you ! </p>
 										<% } else { %>
 											<p><strong> <%= notification.follow.from.nickname %> started following you ! </strong></p>
+										<% } %>
+									</div>
+								</a>
+							<% } %>
+							<% if(notification.follow == undefined && notification.like == undefined && notification.comment == undefined){ %>
+								<a class="nav-link" href="/<%= notification.post.id %>" data-swup-preload>
+									<div class="col-2">	<img src="<%= notification.post.user.cover %>"> </div>
+									<div class="col-8 content">
+										<% if(notification.seen){ %>
+											<p> <%= notification.post.user.nickname %> uploaded a new awesome post ! </p>
+										<% } else { %>
+											<p><strong> <%= notification.post.user.nickname %> uploaded a new awesome post ! </strong></p>
 										<% } %>
 									</div>
 								</a>

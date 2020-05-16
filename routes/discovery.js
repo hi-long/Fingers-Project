@@ -8,7 +8,12 @@ router.get('/discovery', isSignedIn, async (req, res) => {
 		const currentAccount = await User.findById(req.user).populate('notifications')
 				.populate({
 					path: 'notifications',
-					populate: { path: 'post' }
+					populate: {
+						path: 'post',
+						populate: {
+							path: 'user'
+						}
+					}
 				})
 				.populate({
 					path: 'notifications',
@@ -43,7 +48,8 @@ router.get('/discovery', isSignedIn, async (req, res) => {
 					populate: {
 						path: 'posts',
 						populate: {
-							path: 'comments likes song'
+							path: 'comments likes song',
+							populate: 'user'
 						}
 					}
 				})

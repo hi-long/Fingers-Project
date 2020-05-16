@@ -21,7 +21,10 @@ router.get('/:id', isSignedIn, async (req, res) => {
 			.populate({
 				path: 'notifications',
 				populate: { 
-					path: 'post'
+					path: 'post',
+					populate: {
+						path: 'user'
+					}
 				}
 			})
 			.populate({
@@ -30,6 +33,15 @@ router.get('/:id', isSignedIn, async (req, res) => {
 					path: 'like comment follow',
 					populate: {
 						path: 'user'
+					}
+				}
+			})
+			.populate({
+				path: 'notifications',
+				populate: {
+					path: 'follow',
+					populate: {
+						path: 'from to'
 					}
 				}
 			})
@@ -83,14 +95,16 @@ router.put('/:id', isSignedIn, async (req, res) => {
 			req.user.save();
 			foundUser.followers.push(req.user);
 			foundUser.save();
-		} else {
+		} else if (req.body.followed == true) {
 			const foundFollow = await Follow.find({from: req.user.id, to: foundUser.id});
 			const deletedNotification = await Notification.findOneAndDelete({follow: foundFollow.id});
-			foundUser.notifications.splice(foundUser.notifications.indexOf(deletedNotification.id), 1);
-			req.user.followings.splice(req.user.followings.indexOf(foundUser), 1);
-			req.user.save();
-			foundUser.followers.splice(foundUser.followers.indexOf(req.user.id), 1);
-			foundUser.save();
+			if(deletedNotification != null){
+				foundUser.notifications.splice(foundUser.notifications.indexOf(deletedNotification.id), 1);
+				req.user.followings.splice(req.user.followings.indexOf(foundUser), 1);
+				req.user.save();
+				foundUser.followers.splice(foundUser.followers.indexOf(req.user.id), 1);
+				foundUser.save();
+			}
 		}
 		res.send('Ok ;)');
 	}

@@ -26,8 +26,6 @@ for(let i = 0; i < notificationsDate.length; i ++){
 let notis = $(".noti"),
 	numberOfUnseenNotis = $("#n-o-unseen");
 
-console.log(numberOfUnseenNotis)
-
 if(numberOfUnseenNotis.text() == 0){
 	$(".fa-bell").removeClass("rotating");
 } else {

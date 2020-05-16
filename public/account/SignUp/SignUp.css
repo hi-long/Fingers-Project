@@ -51,7 +51,7 @@ span {
 	transition: 1s;
 }
 
-button[type="submit"]::after {
+#sign-up-btn::after {
 	background: whitesmoke;
 	content: '';
 	position: absolute;
@@ -65,7 +65,7 @@ button[type="submit"]::after {
 }
 
 
-button[type="submit"]:hover::after {
+#sign-up-btn:hover::after {
 	height: 100%;
 }
 

@@ -2,7 +2,9 @@ var express = require("express"),
 	router = express.Router();
 
 var Song = require("../models/song"),
-	Post = require("../models/post")
+	Post = require("../models/post"),
+	Notification = require("../models/notification"),
+	User = require("../models/user")
 
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -45,6 +47,8 @@ router.get('/new', isSignedIn, (req, res) => {
 router.post('/new', isSignedIn, upload.single('image'), (req, res) => {
 	cloudinary.v2.uploader.upload(req.file.path, async (err, result) => {
 		try {
+			const currentUser = req.user.populate('followings');
+			console.log(currentUser);
 			const foundSong = await Song.findOne().sort({ _id: -1 });
 			const createdPost = await Post.create(
 				{
@@ -57,11 +61,19 @@ router.post('/new', isSignedIn, upload.single('image'), (req, res) => {
 			)
 			req.user.posts.push(createdPost);
 			req.user.save();
+			const newNotification = await Notification.create({post : createdPost});
+			currentUser.followings.forEach(async following => {
+				const foundFollowing = await User.findById(following);
+				foundFollowing.notifications.push(newNotification);
+				foundFollowing.save();
+			})
 			req.flash('success', 'You have successfully uploaded your song ! :>');
 			res.redirect('/' + req.user.id);
 		}
 		catch (err) {
 			console.log(err);		
+			req.flash('error', 'Some error has just happened :( , please try again !');
+			res.redirect('/new');
 		}
 	})
 });

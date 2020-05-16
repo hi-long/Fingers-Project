@@ -144,3 +144,8 @@ h5 {
 hr {
 	margin: 0.5rem;
 }
+
+/* INTERACTION */
+#interaction {
+	border: 1px dashed blanchedalmond;
+}

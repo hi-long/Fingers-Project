@@ -242,6 +242,24 @@ router.delete('/delete', isSignedIn, async (req, res) => {
 	}
 });
 
+router.delete('/comment/:commentId/delete', isSignedIn, async (req, res) => {
+	try {
+		const foundPost = await Post.findById(req.params.id);
+		const deletedComment = await Comment.findByIdAndRemove(req.params.commentId);
+		const deletedNotification = await Notification.findOneAndDelete({comment: deletedComment});
+		foundPost.comments.splice(foundPost.comments.indexOf(deletedComment), 1);
+		if(deletedNotification != null && deletedNotification != undefined && foundPost.user.notifications != undefined) {
+			foundPost.user.notifications.splice(foundPost.user.notifications.indexOf(deletedNotification), 1);
+			foundPost.user.save();
+		}
+		foundPost.save();
+		res.send("Deleted !");
+	} 
+	catch (err) {
+		console.log(err);
+	}
+})
+
 function isSignedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();

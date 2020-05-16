@@ -13,8 +13,8 @@
 					<canvas  id="<%= post.song.id %>" class="product" data-post-id="<%= post.id %>" data-is-playing="false" data-pause-pos="0"></canvas>
 					<div class="header">
 						<img src="<%= following.cover %>"/>
-						<p  class="user-nickname"> <%= following.nickname %> </p>
-						<% if(post.likes.find(like => like.user == user.id) != undefined) { %>
+						<p  class="user-nickname"> <%= following.nickname %> </p>				
+						<% if(post.likes.find(like => like.user.id == user.id) != undefined) { %>
 							<img class="btn like-btn" src="https://img.icons8.com/cotton/36/000000/like--v3.png"/>
 						<% } else { %>
 							<img class="btn like-btn" src="https://img.icons8.com/cotton/36/000000/like--v4.png"/>
@@ -33,6 +33,9 @@
 											<h5 class="user-nickname"><%= comment.user.nickname %></h5>
 										</div>
 									</a>
+									<% if(post.user.id == user.id || comment.user.id == user.id){ %>
+										<img class="delete-comment-btn" style="float: right; cursor: pointer;" src="https://img.icons8.com/cotton/36/000000/delete-sign--v1.png"/>
+									<% } %>
 									<div class="date row">
 										<div class="col-10">
 											<p class="comment-content"><%= comment.content %></p>
@@ -41,8 +44,8 @@
 											<p class="comment-date"> <%= Date.now() - comment.date %></p>
 										</div>
 									</div>
+									<hr>
 								</div>
-								<hr>
 							<% }) %>
 						</div>
 						<div class="d-flex" id="interaction">

@@ -1,5 +1,6 @@
 import {timeConverter} from '/mediaPlayer/converter.js';
 import {newComment} from '/mediaPlayer/newInteractions.js';
+import {deleteComment} from '/mediaPlayer/handleInteractions.js';
 import theme, {Timer} from '/mediaPlayer/media.js';
 
 //-----------------------//
@@ -10,7 +11,6 @@ setTimeout(() => {
 		$(".main-container").fadeIn("slow");
 	});
 }, 3000)
-
 
 //-----------------------//
 // OTHERS		 		 //
@@ -44,11 +44,12 @@ likeBtn.click((event) => {
 	let numberOfLikesOfThisPost = $(event.currentTarget).parent().children(".n-o-likes");
 	let canvasOfThisPost = $(event.currentTarget).parent().parent().children("canvas");
 	var likes = numberOfLikesOfThisPost.text();
+	console.log(numberOfLikesOfThisPost);
 	axios.post(`/post/${canvasOfThisPost.attr("data-post-id")}/new/like`, {})
 		.then((response) => {
 			if(response.data == "liked"){
 				$(event.currentTarget).attr("src", "https://img.icons8.com/cotton/36/000000/like--v4.png");
-				numberOfLikes.text(parseInt(likes) - 1);
+				numberOfLikesOfThisPost.text(parseInt(likes) - 1);
 			} else {
 				$(event.currentTarget).attr("src", "https://img.icons8.com/cotton/36/000000/like--v3.png");
 				var likedUser = {
@@ -56,7 +57,7 @@ likeBtn.click((event) => {
 					cover: response.data.user.cover,
 					nickname: response.data.user.nickname
 				}
-				numberOfLikes.text(parseInt(likes) + 1);
+				numberOfLikesOfThisPost.text(parseInt(likes) + 1);
 			}
 		})
 		.catch((error) => {
@@ -71,9 +72,7 @@ submitCommentBtn.on("click", (event) => {
 	let newCommentContent = $(event.currentTarget).parent().children("textarea").val();
 	let commentsDiv = $(event.currentTarget).parent().parent().children(".comments-part");
 	let postId = $(event.currentTarget).parent().parent().parent().children("canvas").attr("data-post-id");
-	console.log(postId);
 	let numberOfComments = $(event.currentTarget).parent().parent().parent().children(".header").children(".n-o-comments");
-	console.log(numberOfComments);
 	axios.post(`/post/${postId}/new/comment`, {
 			content: newCommentContent
 		})
@@ -86,18 +85,30 @@ submitCommentBtn.on("click", (event) => {
 		});
 })
 
+// DELETE COMMENT
+const deleteBtn = $(".delete-comment-btn");
+
+commentsDiv.on("click", ".delete-comment-btn", (event) => {
+	let thisBtn = $(event.currentTarget),
+		commentId = thisBtn.parent().attr("data-comment-id"),
+		postId = $(event.currentTarget).parent().parent().parent().parent().children("canvas").attr("data-post-id"),
+		numberOfComments = $(event.currentTarget).parent().parent().parent().parent().find(".n-o-comments");
+	deleteComment(postId, commentId, commentsDiv);
+	thisBtn.parent().fadeOut("slow");
+	numberOfComments.text(parseInt(numberOfComments.text()) - 1);
+})
+
 //-----------------------//
-// MEDIA RESOURCES 		 //
+// MEDIA		 		 //
 //-----------------------//
 
+// RESOURCES
 paper.install(window);
 
 var start = false,
 	stop = false;
 
-//-----------------------//
-// MEDIA PLAYER 		 //
-//-----------------------//
+// MEDIA PLAYER 	
 let productCanvas = $('.product');
 
 productCanvas.on('click', () => {
