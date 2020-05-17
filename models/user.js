@@ -6,13 +6,13 @@ var userSchema = new mongoose.Schema({
 	username: 
 		{
 			type: String,
-			unique: true,
+			sparse: true,
 			require: true
 		},
 	nickname: 
 		{
 			type: String,
-			unique: true,
+			
 			require: true
 		},
 	description: String,

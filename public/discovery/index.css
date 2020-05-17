@@ -1,5 +1,5 @@
 body {
-	background-image: url("https://proxy-ap-south1.goorm.io//service/5e8ea0e336ae89208fc4ad3e_dtEot0Pl0y5uRoQXAnq.run-ap-south1.goorm.io/9080//file/load/annie-spratt-d7q5uqudtzA-unsplash.jpg?path=d29ya3NwYWNlJTJGRmluZ2VycyUyRnB1YmxpYyUyRmRpc2NvdmVyeSUyRmFubmllLXNwcmF0dC1kN3E1dXF1ZHR6QS11bnNwbGFzaC5qcGc=&docker_id=dtEot0Pl0y5uRoQXAnq&secure_session_id=I5uvmPqP_STuBo3Z9zI0XLnHuU4Wl4m_");
+	background-image: url("");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -79,6 +79,16 @@ canvas {
 	font-size: 1.3rem;
 }
 
+.to-the-post {
+	float: right; 
+	margin-left: 1rem;
+	transition: 1s;
+}
+
+.to-the-post:hover {
+	margin-left: 2rem;
+}
+
 /*-------------------*/
 /* COMMENT */
 /*-------------------*/
@@ -122,7 +132,6 @@ h5 {
 	padding: 3rem 0;
 	margin-bottom: 0;
 }
-
 
 .comment-content {
 	padding: 0;

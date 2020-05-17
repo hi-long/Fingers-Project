@@ -53,12 +53,12 @@ NAVIGATION BUTTON
 /* ------------------ */
 
 nav {
-	background-color: antiquewhite;	
+	background-color: none;	
+	padding: 0 !important;
 }
 
-nav .container {
-	background-color: floralwhite;
-	border-radius: 10px;
+nav .container-fluid {
+	background-color: papayawhip;
 }
 
 .navbar, .navbar-brand {
@@ -72,7 +72,7 @@ nav .container {
 .navbar-brand {
 	font-family: 'Courgette', cursive;
 	font-size: 2.5rem;
-	color: burlywood !important;
+	color: tomato !important;
 }
 
 .navbar-brand i {
@@ -83,18 +83,94 @@ nav .container {
 	margin-left: 27%;
 }
 
+/* NAVBAR RIGHT SIDE ICONS */
 .navbar i {
-	color: burlywood;
+	color: cornsilk;
 }
 
 nav .fa-compass {
 	transition: 2s;
 }
 
+nav ul {
+	display: flex;
+	align-items: center;
+	border-radius: 40px;	
+	background-color: lightslategrey;
+
+}
+
+nav ul li > a {
+	display: contents !important;
+}
+
+nav ul li {
+	position: relative;
+	display: flex !important;
+	padding: 0.5rem;
+	border-radius: 40px;
+	align-items: center;
+	transition: 0.5s ease-in-out;
+} 
+
 nav .fa-compass:hover {
 	transform: rotate(360deg);
 	color: cornflowerblue;
 }
+nav ul .have-after:hover {
+	background-color: darkslategray;
+}
+
+nav ul .have-after::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	width: 0;
+	height: 100%;
+	transition: 0.5s;
+	z-index: -1;
+}
+
+nav ul .have-after:hover::before {
+	border: 2px solid darkslategray;
+	border-radius: 40px;
+	width: 100%;
+}
+
+nav ul .have-after::after {
+	content: "";
+	display: block;
+	height: 100%;
+	margin-left: 0.2rem;
+    padding: 0 0.5rem;
+	border-radius: 1rem;
+	font-size: 1.2rem;
+	font-family: inherit; 
+	background-color: white;
+	transform: scaleX(0);  
+	transform-origin:   0% 50%;
+  	transition: transform 0.5s ease-in-out;
+}
+
+nav ul .have-after:hover::after {
+	transform: scaleX(1); 
+	transform-origin: 0% 50%;
+    width: 100%;
+}
+
+#to-creation:hover::after {
+	content: "Creation";
+}
+
+#to-discovery:hover::after {
+	content: "Newfeed";
+}
+
+#to-setting:hover::after {
+	content: "Setting";
+}
+
 /* DROPDOWN MENU */
 .dropdown-menu {
 	width: 30rem;
@@ -174,7 +250,7 @@ nav .fa-compass:hover {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background: #2f3640;
+	background-color: floralwhite;
 	height: 1rem;
 	border-radius: 40px;
 	padding: 10px;
@@ -187,7 +263,7 @@ nav .fa-compass:hover {
 	height: 1rem;
 	padding: 1rem;
 	border-radius: 40px;
-	background: #2f3640;
+	background-color: #2f3640;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -206,7 +282,7 @@ nav .fa-compass:hover {
 	outline: none;
 	float: left;
 	padding: 0;
-	color: white;
+	color: black;
 	font-size: 16px;
 	transition: 1s;
 	line-height: 2rem;

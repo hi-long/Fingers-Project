@@ -107,7 +107,6 @@ router.get('/check/nickname/:nickname', async (req, res) => {
 	try {
 		const newNickname = req.params.nickname;
 		const foundUser = await User.find({ nickname: req.params.nickname }, 'nickname');
-		console.log(foundUser.length);
 		if (foundUser.length == 0) {
 			res.send('valid');
 		} else {
@@ -151,7 +150,7 @@ router.post('/forgot', function(req, res, next) {
 				User.findOne({ username: req.body.email }, function(err, user) {
 					if (!user) {
 						req.flash('error', 'No account with that email address exists.');
-						return res.redirect('/forgotPassword');
+						res.redirect('/forgotPassword');
 					}
 
 					user.resetPasswordToken = token;
@@ -189,6 +188,7 @@ router.post('/forgot', function(req, res, next) {
 						'success', 'An e-mail has been sent to ' + user.username + ' with further instructions.'
 					);
 					done(err, 'done');
+					res.redirect("/signin");
 				});
 			}
 		],
@@ -270,6 +270,7 @@ router.post('/resetPassword/:token', (req, res) => {
 			}
 		],
 		function(err) {
+			req.flash("error", "Some errors occured :( , please try again !")
 			res.redirect('/signin');
 		}
 	);

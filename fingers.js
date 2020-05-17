@@ -29,15 +29,15 @@ var 	authRoutes = require("./routes/index"),
 //--------------------//
 // APP CONFIG
 //--------------------//
-mongoose.connect('mongodb://localhost/fingers_data', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-});
-
-// mongoose.connect(`mongodb+srv://Lof_TheCreater:${process.env.MONGO_ATLAS_PASSWORD}@fingers-iwbbc.mongodb.net/test?retryWrites=true&w=majority`, {
+// mongoose.connect('mongodb://localhost/fingers_data', {
 // 	useNewUrlParser: true,
 // 	useUnifiedTopology: true
-// })
+// });
+
+mongoose.connect(`mongodb+srv://Lof_TheCreater:${process.env.MONGO_ATLAS_PASSWORD}@fingers-iwbbc.mongodb.net/test?retryWrites=true&w=majority`, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+})
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));

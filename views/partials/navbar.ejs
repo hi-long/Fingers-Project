@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-	<div class="container">
+	<div class="container-fluid">
 		<a class="navbar-brand" href="/<%= user.id %>" data-swup-preload>Fingers</a>
 		<div id="search-div">
 			<input id="search-input" type="search" placeholder="Search">
@@ -9,12 +9,12 @@
 			<div id="result"></div>
 		</div>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item icon-toggle" id="first">
+			<li class="nav-item icon-toggle have-after" id="to-creation">
 				<a class="nav-link" href="/" data-swup-preload>
 					<i class="far fa-play-circle"></i>
 				</a>
 			</li>
-			<li class="nav-item" id="icon-toggle-trigger">
+			<li class="nav-item have-after" id="to-discovery">
 				<a class="nav-link" href="/discovery" data-swup-preload>
 					<i class="far fa-compass"></i>
 				</a>
@@ -81,7 +81,7 @@
 					<% }) %>
 				</div>
 			</li>
-			<li class="nav-item icon-toggle" id="third">
+			<li class="nav-item icon-toggle have-after" id="to-setting">
 				<a class="nav-link" href="/setting" data-swup-preload>
 					<i class="far fa-user-circle"></i>
 				</a>

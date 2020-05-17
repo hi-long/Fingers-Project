@@ -48,7 +48,6 @@ router.post('/new', isSignedIn, upload.single('image'), (req, res) => {
 	cloudinary.v2.uploader.upload(req.file.path, async (err, result) => {
 		try {
 			const currentUser = req.user.populate('followings');
-			console.log(currentUser);
 			const foundSong = await Song.findOne().sort({ _id: -1 });
 			const createdPost = await Post.create(
 				{
