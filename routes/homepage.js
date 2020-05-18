@@ -11,6 +11,8 @@ var User = require('../models/user'),
 
 router.get('/:id', isSignedIn, async (req, res) => {
 	try {
+		const currentAccount_toGetFollowedBack =  await User.findById(req.user.id);
+		const followedBack = currentAccount_toGetFollowedBack.followings.filter(user => currentAccount_toGetFollowedBack.followers.includes(user)); 
 		const currentAccount = await User.findById(req.user.id)
 			.populate('posts')
 			.populate({
@@ -64,6 +66,7 @@ router.get('/:id', isSignedIn, async (req, res) => {
 			}
 			res.render('account/home', {
 				followed: followed,
+				followedBack: followedBack,
 				numberOfUnseenNotis: numberOfUnseenNotis,
 				notifications: currentAccount.notifications,
 				currentUser: foundUser,
@@ -72,6 +75,7 @@ router.get('/:id', isSignedIn, async (req, res) => {
 		} else {
 			res.render('account/home', {
 				followed: true,
+				followedBack: followedBack,
 				numberOfUnseenNotis: numberOfUnseenNotis,
 				notifications: currentAccount.notifications,
 				currentUser: currentAccount,

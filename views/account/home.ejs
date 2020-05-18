@@ -5,7 +5,7 @@
 
 	<body>
 		<%- include ("../partials/navbar.ejs") %>
-		<div id="swup" class="container-fluid transition-fade">
+		<div id="swup" class="container-fluid transition-fade main">
 			<div class="row">
 				<div class="col-1 navigation-btn" id="left"></div>
 				<div class="col-10">
@@ -26,14 +26,14 @@
 									<% } %>
 								</div>
 								<% if(currentUser.posts.length <= 1) { %>
-									<p style="font-size: 1.3rem; margin: 0;"><strong><%= currentUser.posts.length %></strong> <span>  post</span>						
+									<p style="font-size: 1.3rem; margin: 0;"><strong><%= currentUser.posts.length %></strong> post <span> </span>						
 								<% } else { %>
-									<p  style="font-size: 1.3rem; margin: 0;"><strong><%= currentUser.posts.length %></strong> <span>  posts</span>
+									<p  style="font-size: 1.3rem; margin: 0;"><strong><%= currentUser.posts.length %></strong> posts <span>  </span>
 								<% } %>
 								<% if(currentUser.followers.length <= 1) { %>
 									<span id="n-o-followers" style="font-weight:700;"><%= currentUser.followers.length %></span> follower</p>
 								<% } else { %>
-									<span id="n-o-followers" style="font-weight:700;"><%= currentUser.followers.length %></span> follower </p>
+									<span id="n-o-followers" style="font-weight:700;"><%= currentUser.followers.length %></span> followers </p>
 								<% } %>
 								<p>	 <%= currentUser.description %> </p>
 							</div>
@@ -66,6 +66,41 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="followers-div container">
+			<div class="row" id="followers">
+				<div class="col-4"></div>
+				<div class="col-4">
+					<div>
+						<i class="fas fa-times-circle" id="escape-btn"></i>
+					</div>
+					<div class="row" id="content">
+						<% user.followers.forEach(follower => { %>
+							<div class="user col-9">
+								<a href="/<%= follower.id%>">
+									<div class="col-3">
+										<img class="profile" src="<%= follower.cover%>">
+									</div>
+									<div class="col-9">
+										<p class="user-nickname"><%= follower.nickname%></p>
+									</div>
+								</a>
+							</div>
+							<div class="col-3" data-user-id="<%= follower.id %>">
+								<% if(followedBack.includes(follower.id)) { %>
+									<button class="btn btn-info fDiv-follow-btn">Followed</button>
+								<%	} %>
+								<% if(!followedBack.includes(follower.id)) { %>
+									<button class="btn btn-success fDiv-follow-btn">Follow</button>
+								<% } %>
+							</div>
+						<% }) %>
+					</div>
+				</div>
+				<div class="col-4"></div>
+			</div> 
+		</div>
+
 	<%- include ("../partials/touch.ejs") %>
 	<%- include ("../partials/footer.ejs") %>
 	<script>

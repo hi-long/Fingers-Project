@@ -72,7 +72,7 @@ nav .container-fluid {
 .navbar-brand {
 	font-family: 'Courgette', cursive;
 	font-size: 2.5rem;
-	color: tomato !important;
+	color: chocolate !important;
 }
 
 .navbar-brand i {
@@ -182,6 +182,7 @@ nav ul .have-after:hover::after {
 .dropdown-menu > div {
 	display: flex;
 	margin: 0;
+	overflow: hidden;
 }
 
 .dropdown-menu > div:hover {

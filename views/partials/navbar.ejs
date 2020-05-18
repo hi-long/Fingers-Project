@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+<nav class="navbar fixed-top navbar-expand-sm navbar-light">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/<%= user.id %>" data-swup-preload>Fingers</a>
 		<div id="search-div">
@@ -44,9 +44,9 @@
 									<div class="col-2">	<img src="<%= notification.comment.user.cover %>"> </div>
 									<div class="col-8 content">
 										<% if(notification.seen){ %>
-											<p> <%= notification.comment.user.nickname %> commented your post ! </p>
+											<p> <%= notification.comment.user.nickname %> commented your post: <%= notification.comment.content %></p>
 										<% } else { %>
-											<p><strong><%= notification.comment.user.nickname %> commented your post !</strong></p>
+											<p><strong><%= notification.comment.user.nickname %> commented your post: <%= notification.comment.content %></strong></p>
 										<% } %>
 									</div>
 									<div class="col-2">	<img src="<%= notification.post.cover %>"> </div>

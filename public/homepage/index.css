@@ -9,6 +9,19 @@ div *:focus {
 	outline: none;
 }
 
+.alert {
+	position: absolute;
+	top: 10%;
+	left: 12%;
+	background-color: linen;
+	border-color: linen;
+	color: orange;
+}
+
+.disable {
+	pointer-events: none !important;
+	opacity: 0.5;
+}
 /*-----------------
   PROFILE
 ------------------*/
@@ -70,6 +83,7 @@ div *:focus {
 
 #n-o-followers {
 	margin-right: 0;
+	cursor: pointer;
 }
 
 /*-----------------
@@ -131,28 +145,27 @@ div *:focus {
 	opacity: 0.4;
 }
 
-/*-----------------
-  FOLLOWERS DIV
-------------------*/
-#followers-div{
+/* ------------- */
+/* FOLLOWERS DIV */
+/* ------------- */
+.followers-div {
 	position: absolute;
-	width: 30%;
-	max-height: 25rem;
-	border-radius: 10px;
-	background-color: #FBFCFC;
-	top: -200%;
+	top: -100%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	overflow: auto;
 	transition: 1s;
+}
+
+.followers-div-toggle {
+	top: 50%;
+}
+
+#followers div:nth-child(2) {
+	background-color: white;
 }
 
 #followers-div::-webkit-scrollbar {
     display: none !important;
-}
-
-.followers-div-show {
-	top: 24.5% !important;
 }
 
 #escape-btn {
@@ -160,6 +173,7 @@ div *:focus {
 	margin: 0.5rem;
 	margin-bottom: 1rem;
 	transition: 1s;
+	cursor: pointer;
 }
 
 #escape-btn:hover {
@@ -169,39 +183,39 @@ div *:focus {
 	border-radius: 40px;
 }
 
-#follower-div .currentUser {
-	display: flex;
-	padding: 0.5rem;
-	font-size: 0.5rem;
+#content {
+	max-height: 15rem;
+	overflow: auto;
 }
 
-#followers-div .currentUser a {
-	display: flex;
-	font-size: 1.5rem;
-}
-
-#followers-div .currentUser img {
-	height: 3rem;
-	width: 3rem;
+#content .profile {
 	padding: 0;
-	margin: 0;
-	border-radius: 50%;
+    margin: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 40px;
 }
 
-#followers-div .currentUser p {
-	line-height: 3rem;
-	margin-left: 2rem;
+#content .user {
+	padding-left: 0;
+	margin-bottom: 1rem;
 }
 
-.alert {
-	background-color: linen;
-	border-color: linen;
-	color: darkgoldenrod;
-	position: absolute;
-	top: 12%;
-	left: 13%;
+#content .user:nth-child(even) {
+	background-color: gray;
 }
 
-.alert i {
-	color: darksalmon;
+#content a {
+	display: flex;
+	align-items: center;
+}
+
+#content p {
+	padding: 0;
+	margin-bottom: 0;
+}
+
+#content button {
+	outline: none;
+	box-shadow: none;
 }
