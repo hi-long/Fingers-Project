@@ -76,7 +76,8 @@ router.get('/edit', isSignedIn, async (req, res) => {
 				post: foundPost
 			});
 		} else {
-			res.redirect("/notfound");
+			res.flash("error", "You are not the creator of the post !")
+			res.redirect(`/${req.params.id}`);
 		}
 	}
 	catch (err) {

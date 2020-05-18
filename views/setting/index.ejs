@@ -3,9 +3,10 @@
 </head>
 <body>
 	<%- include ("../partials/navbar.ejs") %>
-	<div class="container main">
+	<div class="container-fluid main">
 		<div class="row">
-			<div class="col-sm-4 entity">
+			<div class="col-0 col-lg-1"></div>
+			<div class="col-4 col-lg-3 entity">
 				<ul class="list-group">
 					<li class="list-group-item profile-enter">Profile</li>
 					<li class="list-group-item password-enter">Change password</li>
@@ -14,7 +15,7 @@
 					</a>
 				</ul>
 			</div>
-			<div class="col-sm-8 attribute">
+			<div class="col-8 col-lg-7 attribute">
 <!-- 	PROFILE  	-->
 				<div class="row profile">
 					<div class="col-2"></div>
@@ -70,6 +71,7 @@
 					<div class="col-3"></div>
 				</div>
 			</div>
+			<div class="col-0 col-lg-1"></div>
 		</div>	
 	</div>
 	<%- include ("../partials/touch.ejs") %>

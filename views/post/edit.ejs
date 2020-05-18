@@ -2,10 +2,10 @@
 	<link rel="stylesheet" type="text/css" href="/post/edit/edit.css">
 </head>
 <body>
-		<div class="container">
+		<div class="container-fluid">
 		<div class="row">
-			<div class="col-1" id="left"></div>
-			<div class="col-6">
+			<div class="col-0 col-lg-1" id="left"></div>
+			<div class="col-7 col-lg-6">
 				<div id="image" style="background-image: url(<%= post.cover %>)">
 					<div id="tools">
 						<i class="fas fa-wrench"></i>
@@ -15,7 +15,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-4" id="info">
+			<div class="col-4 col-lg-4" id="info">
 				<form action="/post/<%= post.id %>/edit?_method=put" method="post" enctype="multipart/form-data">
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
@@ -41,7 +41,7 @@
 				</form>
 				
 			</div>
-			<div class="col-1" id="right"></div>
+			<div class="col-0 col-lg-1" id="right"></div>
 		</div>
 	</div>
 	<%- include ("../partials/touch.ejs") %>
