@@ -11,13 +11,22 @@
 			</div>
 			<div class="form-group">
 				<input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp" placeholder="Register an email" required="true" minlength="2">
+				<label>
+					<i class="fas fa-envelope-square"></i>
+				</label>
 				<span id="email-valid-message"></span>
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="true" minlength="6">
+				<label>
+					<i class="fas fa-lock"></i>
+				</label>
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control" id="confirmation" name="confirmation" placeholder="Retype password" required="true"  minlength="6" autocomplete="off">
+				<label>
+					<i class="fas fa-lock"></i>
+				</label>
 				<span id="password-valid-message"></span>
 			</div>
 			<div class="form-check">
@@ -31,7 +40,7 @@
 			</div>
 			<div class="form-group">
 				<p>
-					You may want to <a href="/signin"> sign in </a> or <a href="forgot"> reset your password</a>
+					You may want to <a href="/signin"><strong>sign in</strong> </a> or <a href="forgot"><strong>reset your password</strong></a>
 				</p>
 			</div>
 		</form>

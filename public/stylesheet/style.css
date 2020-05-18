@@ -7,6 +7,7 @@ input:-webkit-autofill:active  {
 
 body {
 	font-family: 'Amiri', serif;
+	background-attachment: fixed;
 }
 
 .transition-fade {

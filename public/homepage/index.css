@@ -26,10 +26,8 @@ div *:focus {
   PROFILE
 ------------------*/
 .profile {
-	padding: 5.5rem 0;
-	margin: 2.5rem auto;
-	margin-bottom: 3%;
-	border-top: 1px solid rgb(0, 0, 0, 0.1);
+	padding: 15% 0;
+	margin: auto;
 	width: 100%;
 	background-color: white;
 }

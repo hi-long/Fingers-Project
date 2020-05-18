@@ -13,14 +13,45 @@ div {
 
 input {
 	outline: none !important;
-	border: none !important;
 	box-shadow: none !important;
 	padding-left: 0.5rem !important;
 	border-radius: 0.2rem !important;
+	border-bottom: 0 !important;
+}
+
+input label::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	height: auto;
+	background-color: pink;
+	transition: 0.5s;
+}
+
+input:focus  label::after {
+	width: 100%;
+	border: 1px solid pink;
 }
 
 span {
 	padding-left: 0.5rem;
+}
+
+.form-group {
+	position: relative;
+	display: flex;
+    flex-direction: row-reverse;
+    align-items: baseline;
+	margin-bottom: 1rem;
+    border-bottom: 1px solid;
+	padding: 0;
+}
+
+.form-group:first-child, .form-group:last-child {
+	display: block;
+	border: 0;
 }
 
 .form-group:first-child h3 {
@@ -99,8 +130,12 @@ form div:last-child a {
 }
 
 button[type=submit] {
-	background-color: transparent;
+	width: 100%;
 	padding: 0.5rem;
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: floralwhite;
+	outline: none;
 }
 
 /*

@@ -7,9 +7,9 @@
 		<%- include ("../partials/navbar.ejs") %>
 		<div id="swup" class="container-fluid transition-fade main">
 			<div class="row">
-				<div class="col-1 navigation-btn" id="left"></div>
-				<div class="col-10">
-					<div class="container profile">
+				<div class="col-6 col-lg-2"></div>
+				<div class="col-12 col-lg-8">
+					<div class="container-fluid profile">
 						<div class="row">
 							<div class="col-4 profile-img">
 								<img src="<%= currentUser.cover %>">
@@ -38,32 +38,31 @@
 								<p>	 <%= currentUser.description %> </p>
 							</div>
 						</div>
-							<div class="container">
-							<hr>
-						</div>
-						
-						<div class="square-container container">
-							<% currentUser.posts.forEach((post) => { %>
-								<div class="square" data-aos="zooms-in">
-									<div class="content">
-										<a href="/post/<%= post.id %>">
-											<img id="post-img" src="<%= post.cover %>">
-										</a>
-										<div id="reaction">
-											<i class="far fa-grin-wink">
-												<%= post.likes.length %>
-											</i>
-											<i class="fas fa-comment-alt">
-												<%= post.comments.length %>
-											</i>
-										</div>
+					</div>
+					<div class="container">
+						<hr>
+					</div>
+					<div class="square-container container-fluid">
+						<% currentUser.posts.forEach((post) => { %>
+							<div class="square" data-aos="zooms-in">
+								<div class="content">
+									<a href="/post/<%= post.id %>">
+										<img id="post-img" src="<%= post.cover %>">
+									</a>
+									<div id="reaction">
+										<i class="far fa-grin-wink">
+											<%= post.likes.length %>
+										</i>
+										<i class="fas fa-comment-alt">
+											<%= post.comments.length %>
+										</i>
 									</div>
 								</div>
-							<% }) %>
-						</div>
+							</div>
+						<% }) %>
 					</div>
-					<div class="col-1 navigation-btn" id="right"></div>
 				</div>
+				<div class="col-0 col-lg-2 navigation-btn" id="right"></div>
 			</div>
 		</div>
 
