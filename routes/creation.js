@@ -95,6 +95,7 @@ router.post("/new/song", async (req, res) => {
 		}
 		const createdSong = await Song.create(
 			{
+				canvasSize: req.body.canvasSize,
 				sounds: req.body.sounds,
 				theme: req.body.theme,
 				effects: req.body.effects,

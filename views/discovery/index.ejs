@@ -8,7 +8,7 @@
 	<%- include ("../partials/navbar.ejs") %>
 	<div class="container-fluid row main-container hide transition-fade" id="swup">
 		<div class="col-1 col-lg-2"></div>
-		<div class="col-10 col-lg-8">
+		<div class="col-10 col-lg-8" style="display: contents">
 			<% followings.forEach((following) => { %>
 				<% following.posts.forEach((post) => { %>
 					<div class="post" data-aos="zoom-in-up">
@@ -67,10 +67,11 @@
 		<div class="col-1 col-lg-2"></div>
 	</div>
 		
+	<%- include ("../partials/contactUs.ejs") %>
 	<%- include ("../partials/touch.ejs") %>
 	<%- include ("../partials/footer.ejs") %>
 	<script type="module" src="/loading/index.js"></script>
 	<script type="module" src="/discovery/index.js"></script>
-		
+	
 	</body>
 </html>

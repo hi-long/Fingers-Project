@@ -85,7 +85,7 @@ router.get('/:id/info', isSignedIn, async (req, res) => {
 
 router.put('/:id/info', isSignedIn, upload.single('image'), (req, res) => {
 	if (req.file) {
-		cloudinary.v2.uploader.upload(req.file.path, async (err, result) => {
+		cloudinary.v2.uploader.upload(req.file.path, { eager: [{ width: 300, height: 300, crop: "crop" }]}, async (err, result) => {
 			try {
 				const foundUser = await User.findByIdAndUpdate(req.params.id, {
 					nickname: req.body.nickname,

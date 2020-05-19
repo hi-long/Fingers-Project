@@ -47,10 +47,16 @@ body.on("keydown", function(event) {
 // SAVE SONG, REPLAY SONG
 //---------------------------//
 var startTime = Date.now();
-var keys = [],
+var canvasSize = {
+		width: $("canvas").width(),
+		height: $("canvas").height()
+	},
+	keys = [],
 	effectsCores = [],
 	themeCores = [],
 	timeCores = [];
+
+console.log(canvasSize.width + " " + canvasSize.height);
 
 paper.install(window);
 
@@ -153,8 +159,10 @@ window.onload = () => {
 	})
 	
 	let postSong = (() => {
+		console.log(canvasSize);
 		return axios.post("/new/song", 
 			{
+				canvasSize: canvasSize,
 				sounds: keys,
 				theme: themeCores,
 				effects: effectsCores,

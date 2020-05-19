@@ -115,8 +115,13 @@ productCanvas.on('click', () => {
 	
 	let clickedCanvas = $(event.currentTarget),
 		onPlaying = clickedCanvas.attr("data-is-playing"),
-		canvasBackground = clickedCanvas.css("backgroundImage");
+		canvasBackground = clickedCanvas.css("backgroundImage"),
+		currentWidth = clickedCanvas.width(),
+		currentHeight = clickedCanvas.height();
+	
 	const song_id = clickedCanvas.attr('id');
+	
+	console.log(currentWidth + " " + currentHeight);
 	
 	if(onPlaying == "true"){
 		onPlaying = "false";
@@ -136,11 +141,14 @@ productCanvas.on('click', () => {
 		
 			paper.setup(song_id);
 		
-			var circles = [],
+			var canvasSize = song.canvasSize,
+				circles = [],
 				keys = song.sounds,
 				effectsCores = song.effects,
 				themeCores = song.theme,
 				timeCores = song.time;
+		
+			console.log(canvasSize.width + " " + canvasSize.height);	
 		
 			(function playSounds(i) {
 				if(clickedCanvas.attr("data-is-playing") == "true") {
@@ -179,7 +187,7 @@ productCanvas.on('click', () => {
 			function playSound(i) {
 				if (effectsCores[i] != undefined) {
 					const newCircle = new Path.Circle({
-						center: new Point(effectsCores[i].center[1] / 3, effectsCores[i].center[2] / 3),
+						center: new Point(effectsCores[i].center[1] * (currentWidth / canvasSize.width), effectsCores[i].center[2] * (currentHeight / canvasSize.height)),
 						radius: effectsCores[i].radius,
 						fillColor: effectsCores[i].fillColor,
 						blendMode: effectsCores[i].blendMode

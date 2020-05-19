@@ -49,8 +49,6 @@ var userSchema = new mongoose.Schema({
 			ref: "User"
 		}
 	],
-	totalLikes: Number,
-	fame: String,
 	resetPasswordToken: String,
 	resetPasswordExpires: Date
 })
