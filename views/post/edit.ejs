@@ -24,11 +24,7 @@
 					<div class="form-group">
 						<textarea class="form-control" id="exampleFormControlTextarea1" name="newDescription" rows="5"> <%= post.description %> </textarea>
 						<div id="action">
-							<form action="/post/<%= post.id %>/delete?_method=delete" method="post">
-								<button type="submit" id="delete">
-									<i class="fas fa-trash-alt"></i>
-								</button>
-							</form>
+							
 							
 							<div class="right-btn">
 								<a href="/post/<%= post.id %>"><i class="fas fa-times-circle"></i></a>
@@ -39,7 +35,11 @@
 						</div>
 					</div>
 				</form>
-				
+				<form action="/post/<%= post.id %>/delete?_method=delete" method="post">
+					<button type="submit" id="delete">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</form>
 			</div>
 			<div class="col-0 col-lg-1" id="right"></div>
 		</div>

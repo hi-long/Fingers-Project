@@ -162,3 +162,14 @@ assitiveTouch.on("mouseenter mouseleave", () => {
         })
     }
 })
+
+/* ----------------- */
+/*  CONTACT US		 */
+/* ----------------- */
+const triggerBtn = $(".trigger-btn");
+let toggleBtns = $(".toggle-btn");
+
+triggerBtn.on("click", () => {
+	console.log("clicked");
+	toggleBtns.toggleClass("toggle");
+})

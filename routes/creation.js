@@ -44,37 +44,37 @@ router.get('/new', isSignedIn, (req, res) => {
 	});
 });
 
-router.post('/new', isSignedIn, upload.single('image'), (req, res) => {
-	cloudinary.v2.uploader.upload(req.file.path, async (err, result) => {
-		try {
-			const currentUser = req.user.populate('followings');
-			const foundSong = await Song.findOne().sort({ _id: -1 });
-			const createdPost = await Post.create(
-				{
-					user: req.user,
-					description: req.body.description,
-					song: foundSong,
-					cover: result.secure_url,
-					coverId: result.public_id
-				}
-			)
-			req.user.posts.push(createdPost);
-			req.user.save();
-			const newNotification = await Notification.create({post : createdPost});
-			currentUser.followings.forEach(async following => {
-				const foundFollowing = await User.findById(following);
-				foundFollowing.notifications.push(newNotification);
-				foundFollowing.save();
-			})
-			req.flash('success', 'You have successfully uploaded your song ! :>');
-			res.redirect('/' + req.user.id);
-		}
-		catch (err) {
-			console.log(err);		
-			req.flash('error', 'Some error has just happened :( , please try again !');
-			res.redirect('/new');
-		}
-	})
+router.post('/new', isSignedIn, upload.single('image'), async (req, res) => {
+	try {
+		const result = await cloudinary.v2.uploader.upload(req.file.path, { upload_preset: "post_cover" });
+		console.log(result);
+		const currentUser = req.user.populate('followings');
+		const foundSong = await Song.findOne().sort({ _id: -1 });
+		const createdPost = await Post.create(
+			{
+				user: req.user,
+				description: req.body.description,
+				song: foundSong,
+				cover: result.secure_url,
+				coverId: result.public_id
+			}
+		)
+		req.user.posts.push(createdPost);
+		req.user.save();
+		const newNotification = await Notification.create({post : createdPost});
+		currentUser.followings.forEach(async following => {
+			const foundFollowing = await User.findById(following);
+			foundFollowing.notifications.push(newNotification);
+			foundFollowing.save();
+		})
+		req.flash('success', 'You have successfully uploaded your song ! :>');
+		res.redirect('/' + req.user.id);
+	}
+	catch (err) {
+		console.log(err);		
+		req.flash('error', 'Some error has just happened :( , please try again !');
+		res.redirect('/new');
+	}
 });
 //Song
 router.get("/song/:id", async (req, res) => {

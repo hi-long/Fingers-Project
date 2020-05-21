@@ -83,23 +83,22 @@ router.get('/:id/info', isSignedIn, async (req, res) => {
 	}
 });
 
-router.put('/:id/info', isSignedIn, upload.single('image'), (req, res) => {
+router.put('/:id/info', isSignedIn, upload.single('image'), async (req, res) => {
 	if (req.file) {
-		cloudinary.v2.uploader.upload(req.file.path, { eager: [{ width: 300, height: 300, crop: "crop" }]}, async (err, result) => {
-			try {
-				const foundUser = await User.findByIdAndUpdate(req.params.id, {
-					nickname: req.body.nickname,
-					description: req.body.description,
-					cover: result.secure_url,
-					coverId: result.public_id
-				});
-				foundUser.save();
-				req.flash('success', `Welcome to Fingers, ${req.user.nickname} stay home, and be legendary!`);
-				res.redirect('/' + req.user.id);
-			} catch (err) {
-				console.log(err);
-			}
-		});
+		try {
+			const result = await cloudinary.v2.uploader.upload(req.file.path,{upload_preset: "avatar"});
+			const foundUser = await User.findByIdAndUpdate(req.params.id, {
+				nickname: req.body.nickname,
+				description: req.body.description,
+				cover: result.secure_url,
+				coverId: result.public_id
+			});
+			foundUser.save();
+			req.flash('success', `Welcome to Fingers, ${req.user.nickname} stay home, and be legendary!`);
+			res.redirect('/' + req.user.id);
+		} catch (err) {
+			console.log(err);
+		}
 	}
 });
 

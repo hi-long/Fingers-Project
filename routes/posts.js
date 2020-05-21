@@ -211,7 +211,7 @@ router.put('/edit', isSignedIn, upload.single('image'), (req, res) => {
 		if (req.file) {
         	try {
 				await cloudinary.v2.uploader.destroy(foundPost.coverId);
-                var result = await cloudinary.v2.uploader.upload(req.file.path);
+                var result = await cloudinary.v2.uploader.upload(req.file.path, { upload_preset: "post_cover" });
 				foundPost.coverId = result.public_id;
                 foundPost.cover = result.secure_url;
             } catch(err) {
@@ -236,6 +236,7 @@ router.delete('/delete', isSignedIn, async (req, res) => {
 		});
 		req.user.posts.splice(req.user.posts.indexOf(req.params.id), 1);
 		req.user.save();
+		req.flash("success", "Your post was successfully deleted !")
 		res.redirect('/' + req.user.id);
 	}
 	catch (err) {

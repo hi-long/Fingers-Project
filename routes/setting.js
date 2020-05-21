@@ -86,7 +86,7 @@ router.put('/setting', isSignedIn, upload.single('image'), async (req, res) => {
 	if (req.file) {
 		try {
 			await cloudinary.v2.uploader.destroy(req.user.coverId);
-			const result = await cloudinary.v2.uploader.upload(req.file.path); 
+			const result = await cloudinary.v2.uploader.upload(req.file.path, { upload_preset: "avatar" }); 
 			req.user.cover = result.secure_url;
 			req.user.coverId = result.public_id;
 		} catch (err) {
