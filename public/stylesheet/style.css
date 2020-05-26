@@ -255,7 +255,7 @@ nav ul .have-after:hover::after {
 }
 
 .suggestions .row {
-	margin: 0.5rem 0 !important;
+	padding: 0.5rem 0 !important;
 }
 
 /* ------------------ */

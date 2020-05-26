@@ -18,8 +18,8 @@ router.get('/discovery', isSignedIn, async (req, res) => {
 				})
 		}
 		
-		const hottestPostsBasedOnLikes = await Post.find().sort({"likes":-1}).limit(5);
-		const hottestPostsBasedOnComments = await Post.find().sort({"comments":-1}).limit(5);
+		const mostLikesPosts = await Post.find().sort({"likes":-1}).limit(5).populate('song').populate('user').populate('likes').populate('comments');
+		const mostCommentsPosts = await Post.find().sort({"comments":-1}).limit(5).populate('song').populate('user').populate('likes').populate('comments');
 		
 		const currentAccount = await User.findById(req.user).populate('notifications')
 				.populate({
@@ -79,6 +79,8 @@ router.get('/discovery', isSignedIn, async (req, res) => {
 			suggestions: suggestions,
 			numberOfUnseenNotis: numberOfUnseenNotis,
 			notifications: currentAccount.notifications,
+			mostLikesPosts: mostLikesPosts,
+			mostCommentsPosts: mostCommentsPosts,
 			user: currentAccount,
 			followings: currentAccount.followings
 		});

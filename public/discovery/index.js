@@ -13,8 +13,42 @@ setTimeout(() => {
 }, 3000)
 
 //-----------------------//
-// OTHERS		 		 //
+// SWITCHER  	 		 //
 //-----------------------//
+const friendPostsBtn = $("#friend-posts"),
+	  mostLikesPostsBtn = $("#most-likes-posts"),
+	  mostCommentsPostsBtn = $("#most-comments-posts"),
+	  friendPosts = $(".friends"),
+	  mostLikes = $(".most-likes"),
+	  mostComments = $(".most-comments")
+
+friendPostsBtn.on("click", () => {
+	friendPostsBtn.css("backgroundColor", "cadetblue");
+	mostLikesPostsBtn.css("backgroundColor", "white");
+	mostCommentsPostsBtn.css("backgroundColor", "white");
+	friendPosts.removeClass("posts-div-toggle");
+	mostLikes.addClass("posts-div-toggle");
+	mostComments.addClass("posts-div-toggle");
+})
+
+mostLikesPostsBtn.on("click", () => {
+	friendPostsBtn.css("backgroundColor", "white");
+	mostLikesPostsBtn.css("backgroundColor", "cadetblue");
+	mostCommentsPostsBtn.css("backgroundColor", "white");
+	friendPosts.addClass("posts-div-toggle");
+	mostLikes.removeClass("posts-div-toggle");
+	mostComments.addClass("posts-div-toggle");
+})
+
+mostCommentsPostsBtn.on("click", () => {
+	friendPostsBtn.css("backgroundColor", "white");
+	mostLikesPostsBtn.css("backgroundColor", "white");
+	mostCommentsPostsBtn.css("backgroundColor", "cadetblue");
+	friendPosts.addClass("posts-div-toggle");
+	mostLikes.addClass("posts-div-toggle");
+	mostComments.removeClass("posts-div-toggle");
+})
+
 const commentsDiv = $('.comments-div'),
 	commentBtn = $('.comment-btn');
 

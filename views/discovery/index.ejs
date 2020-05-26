@@ -8,8 +8,9 @@
 	<%- include ("../partials/navbar.ejs") %>
 	<div class="container-fluid main-container hide transition-fade" id="swup">
 		<div class="row">
-			<div class="col-1 col-lg-2"></div>
-			<div class="col-10 col-lg-8">
+			<div class="col-1 col-lg-1"></div>
+<!-- 	FRIENDS		     -->
+			<div class="col-10 col-lg-8 posts-div friends">
 				<% followings.forEach((following) => { %>
 					<% following.posts.forEach((post) => { %>
 						<div class="post" data-aos="zoom-in-up">
@@ -65,7 +66,126 @@
 					<% }) %>
 				<% }) %>
 			</div>
-			<div class="col-1 col-lg-2"></div>
+<!-- 	MOST LIKES		 -->
+			<div class="col-10 col-lg-8 posts-div-toggle posts-div  most-likes">
+				<% mostLikesPosts.forEach((post) => { %>
+					<div class="post" data-aos="zoom-in-up">
+						<canvas  id="<%= post.song.id %>" class="product" style="background-image: url('<%= post.cover %>')" data-post-id="<%= post.id %>" data-is-playing="false" data-pause-pos="0"></canvas>
+						<div class="header">
+							<img src="<%= post.user.cover %>"/>
+							<p  class="user-nickname"> <%= post.user.nickname %> </p>				
+							<% if(post.likes.find(like => like.user.id == user.id) != undefined) { %>
+								<img class="btn like-btn" src="https://img.icons8.com/cotton/36/000000/like--v3.png"/>
+							<% } else { %>
+								<img class="btn like-btn" src="https://img.icons8.com/cotton/36/000000/like--v4.png"/>
+							<% } %>
+							<span class="n-o-likes"><%= post.likes.length %></span>
+							<img class="btn comment-btn" src="https://img.icons8.com/flat_round/36/000000/quote.png"/>
+							<span class="n-o-comments"><%= post.comments.length %></span>
+							<a href="/post/<%= post.id %>" class="to-the-post">
+								<img src="https://img.icons8.com/flat_round/36/000000/circled-right-2--v1.png"/>
+							</a>
+						</div>
+						<div class="comments-div div-hide">
+							<div class="comments-part">
+								<% post.comments.forEach((comment) => { %>
+									<div class="comment">
+										<a href="/<%= comment.user.id %>" data-swup-preload>
+											<div class="user">
+												<img class="profile" src="<%= comment.user.cover %>">
+												<h5 class="user-nickname"><%= comment.user.nickname %></h5>
+											</div>
+										</a>
+										<% if(post.user.id == user.id || comment.user.id == user.id){ %>
+											<img class="delete-comment-btn" style="float: right; cursor: pointer;" src="https://img.icons8.com/cotton/36/000000/delete-sign--v1.png"/>
+										<% } %>
+										<div class="date row">
+											<div class="col-10">
+												<p class="comment-content"><%= comment.content %></p>
+											</div>
+											<div class="col-2">
+												<p class="comment-date"> <%= Date.now() - comment.date %></p>
+											</div>
+										</div>
+										<hr>
+									</div>
+								<% }) %>
+							</div>
+							<div class="d-flex" id="interaction">
+								<textarea class="form-control" rows="1"></textarea>
+								<button type="button" class="btn btn-info">
+									Put it up !
+								</button>
+							</div>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+<!-- 	MOST COMMENTS    -->
+			<div class="col-10 col-lg-8 posts-div-toggle posts-div  most-comments">
+				<% mostCommentsPosts.forEach((post) => { %>
+					<div class="post" data-aos="zoom-in-up">
+						<canvas  id="<%= post.song.id %>" class="product" style="background-image: url('<%= post.cover %>')" data-post-id="<%= post.id %>" data-is-playing="false" data-pause-pos="0"></canvas>
+						<div class="header">
+							<img src="<%= post.user.cover %>"/>
+							<p  class="user-nickname"> <%= post.user.nickname %> </p>				
+							<% if(post.likes.find(like => like.user.id == user.id) != undefined) { %>
+								<img class="btn like-btn" src="https://img.icons8.com/cotton/36/000000/like--v3.png"/>
+							<% } else { %>
+								<img class="btn like-btn" src="https://img.icons8.com/cotton/36/000000/like--v4.png"/>
+							<% } %>
+							<span class="n-o-likes"><%= post.likes.length %></span>
+							<img class="btn comment-btn" src="https://img.icons8.com/flat_round/36/000000/quote.png"/>
+							<span class="n-o-comments"><%= post.comments.length %></span>
+							<a href="/post/<%= post.id %>" class="to-the-post">
+								<img src="https://img.icons8.com/flat_round/36/000000/circled-right-2--v1.png"/>
+							</a>
+						</div>
+						<div class="comments-div div-hide">
+							<div class="comments-part">
+								<% post.comments.forEach((comment) => { %>
+									<div class="comment">
+										<a href="/<%= comment.user.id %>" data-swup-preload>
+											<div class="user">
+												<img class="profile" src="<%= comment.user.cover %>">
+												<h5 class="user-nickname"><%= comment.user.nickname %></h5>
+											</div>
+										</a>
+										<% if(post.user.id == user.id || comment.user.id == user.id){ %>
+											<img class="delete-comment-btn" style="float: right; cursor: pointer;" src="https://img.icons8.com/cotton/36/000000/delete-sign--v1.png"/>
+										<% } %>
+										<div class="date row">
+											<div class="col-10">
+												<p class="comment-content"><%= comment.content %></p>
+											</div>
+											<div class="col-2">
+												<p class="comment-date"> <%= Date.now() - comment.date %></p>
+											</div>
+										</div>
+										<hr>
+									</div>
+								<% }) %>
+							</div>
+							<div class="d-flex" id="interaction">
+								<textarea class="form-control" rows="1"></textarea>
+								<button type="button" class="btn btn-info">
+									Put it up !
+								</button>
+							</div>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+<!-- 	SWITCH 			 -->
+			<div class="col-1 col-lg-2 switcher">
+				<ul class="">
+					<li id="header">FROM</li>
+					<li class="option" id="friend-posts">FRIENDS POSTS</li>
+					<li class="option" id="most-likes-posts">MOST LIKES</li>
+					<li class="option" id="most-comments-posts">MOST COMMENTS</li>
+				</ul>
+			</div>
+			<div class="col-1 col-lg-1"></div>
 		</div>
 		
 	</div>

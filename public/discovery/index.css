@@ -9,6 +9,10 @@ body {
 	margin-top: 8rem;
 }
 
+.posts-div {
+	transition: 1s;
+} 
+
 .btn {
 	float: right;
 	cursor: pointer;
@@ -39,6 +43,14 @@ canvas {
 	transition: 1s;
 	z-index: 1;
 }
+
+/* ----------------- */
+/* POSTS DIVS TOGGLE */
+/* ----------------- */
+.posts-div-toggle {
+	display: none;
+}
+
 
 /*-------------------*/
 /* USER */
@@ -142,7 +154,7 @@ h5 {
 
 .comment-date {
 	font-style: oblique;
-    color: rosybrown;
+    color: rosybrown;nodemon
     font-weight: 600;
 	float: right;
 }
@@ -160,4 +172,45 @@ hr {
 /* INTERACTION */
 #interaction {
 	border: 1px dashed blanchedalmond;
+}
+
+/* ----------- */
+/* SWITCHER    */
+/* ----------- */
+.switcher ul {
+	display: table;
+	padding: 0;
+	border-top: 2px solid beige;
+	border-left: 2px solid beige;
+	box-shadow: 0.5rem 0.5rem burlywood;
+}
+.switcher li {
+	position: relative;
+	width: 100%;
+	padding: .5rem;
+	list-style: none;
+	float: left;
+	cursor: pointer;
+}
+
+.switcher #header {
+	padding: 0.5rem;
+	background-color: beige;
+}
+
+.option::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-color: cadetblue;
+	transition: 0.5s;
+	z-index: -1;
+}
+
+.option:hover::after {
+	width: 100%;
 }
