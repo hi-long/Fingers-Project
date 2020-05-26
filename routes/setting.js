@@ -31,6 +31,18 @@ cloudinary.config({
 //--------------------//
 router.get('/setting', isSignedIn, async (req, res) => {
 	try {
+		// FRIEND SUGGESTIONS		
+		const count = await User.estimatedDocumentCount();
+		let suggestions = [];
+		for(let i = 0; i < 3; i ++) {
+			const random = Math.floor(Math.random() * count)
+			User.findOne().skip(random).exec(
+				 function (err, result) {
+			  // Tada! random user
+					 suggestions.push(result);
+				})
+		}
+		
 		const currentAccount = await User.findById(req.user.id)
 			.populate('notifications')
 			.populate({
@@ -72,6 +84,7 @@ router.get('/setting', isSignedIn, async (req, res) => {
 			}
 		}
 		res.render('setting/index', {
+			suggestions: suggestions,
 			numberOfUnseenNotis: numberOfUnseenNotis,
 			notifications: currentAccount.notifications,
 			user: currentAccount

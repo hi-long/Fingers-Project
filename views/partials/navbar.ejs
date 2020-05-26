@@ -9,6 +9,31 @@
 			<div id="result"></div>
 		</div>
 		<ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown icon-toggle have-after" id="friend-suggestions">
+				<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-user-friends"></i>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right suggestions" aria-labelledby="navbarDropdownMenuLink">
+					<% suggestions.forEach(suggestion => { %>
+						<% if(suggestion.id != user.id) { %>
+							<div class="row align-items-center">
+								<a class="nav-link" style="display: contents;" href="/<%= suggestion.id %>">
+									<div class="col-2">
+										<img src="<%= suggestion.cover %>">
+									</div>
+									<div class="col-7">
+										<p>	<%= suggestion.nickname %> </p>
+									</div>
+								</a>
+								<div class="col-3">
+									<button class="btn btn-success btn-sm">Follow</button>
+								</div>
+							</div>
+							<div class="dropdown-divider" style="width: 100%;"></div>
+						<% } %>
+					<%	}) %>
+				</div>
+			</li>
 			<li class="nav-item icon-toggle have-after" id="to-creation">
 				<a class="nav-link" href="/" data-swup-preload>
 					<i class="far fa-play-circle"></i>
@@ -23,7 +48,7 @@
 				<a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="far fa-bell"><span id="n-o-unseen" style="font-size: large;"><%= numberOfUnseenNotis %></span></i>
 				</a>
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+				<div class="dropdown-menu dropdown-menu-right notification" aria-labelledby="navbarDropdownMenuLink">
 					<% notifications.reverse().forEach((notification) => { %>
 						<div class="row noti" data-noti-id="<%= notification.id %>">
 							<% if(notification.like){ %>

@@ -1,10 +1,26 @@
 var express = require('express'),
 	router = express.Router();
 
-var User = require('../models/user');
+var User = require('../models/user'),
+	Post = require("../models/post");
 
 router.get('/discovery', isSignedIn, async (req, res) => {
 	try {
+		// FRIEND SUGGESTIONS		
+		const count = await User.estimatedDocumentCount();
+		let suggestions = [];
+		for(let i = 0; i < 3; i ++) {
+			const random = Math.floor(Math.random() * count)
+			User.findOne().skip(random).exec(
+				 function (err, result) {
+			  // Tada! random user
+					 suggestions.push(result);
+				})
+		}
+		
+		const hottestPostsBasedOnLikes = await Post.find().sort({"likes":-1}).limit(5);
+		const hottestPostsBasedOnComments = await Post.find().sort({"comments":-1}).limit(5);
+		
 		const currentAccount = await User.findById(req.user).populate('notifications')
 				.populate({
 					path: 'notifications',
@@ -60,6 +76,7 @@ router.get('/discovery', isSignedIn, async (req, res) => {
 			}
 		}
 		res.render('discovery/index', {
+			suggestions: suggestions,
 			numberOfUnseenNotis: numberOfUnseenNotis,
 			notifications: currentAccount.notifications,
 			user: currentAccount,

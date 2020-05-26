@@ -22,7 +22,7 @@ for(let i = 0; i < notificationsDate.length; i ++){
 	notification.textContent = (timeConverter(parseInt(notiDate)));
 }
 
-/*  TOGGLE		 */
+/*  NOTIFICATION ICON TOGGLE */
 let notis = $(".noti"),
 	numberOfUnseenNotis = $("#n-o-unseen");
 
@@ -119,6 +119,41 @@ search.on("input", function(event){
 			// handle error
 			console.log(error);
 		})
+})
+
+
+/* ----------------- */
+/*  SUGGESTIONS      */
+/* ----------------- */
+const followBtn = $(".suggestions button");	
+
+followBtn.on("click", (event) => {
+	let clickedBtn = $(event.currentTarget),
+		userId = clickedBtn.parent().parent().children("a").attr("href");
+	console.log(userId);
+	let followed = clickedBtn.text();
+	console.log(followed);
+	if(followed == "Follow"){
+		clickedBtn.text("Followed");
+		axios.put(`${userId}`, {followed : false})
+		.then((response) => {
+			console.log(response);
+			clickedBtn.css("background-color", "cadetblue");
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+	} else if(followed == "Followed") {
+		followBtn.text("Follow");
+		axios.put(`${userId}`, {followed : true})
+		.then((response) => {
+			console.log(response);
+			followBtn.css("background-color", "green");
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+	}
 })
 
 /* ----------------- */

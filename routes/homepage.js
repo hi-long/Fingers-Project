@@ -11,6 +11,18 @@ var User = require('../models/user'),
 
 router.get('/:id', isSignedIn, async (req, res) => {
 	try {
+		// FRIEND SUGGESTIONS		
+		const count = await User.estimatedDocumentCount();
+		let suggestions = [];
+		for(let i = 0; i < 3; i ++) {
+			const random = Math.floor(Math.random() * count)
+			User.findOne().skip(random).exec(
+				 function (err, result) {
+					 suggestions.push(result);
+				})
+		}
+		
+		// CHECK FOLLOWED BACK 		
 		const currentAccount_toGetFollowedBack =  await User.findById(req.user.id);
 		const followedBack = currentAccount_toGetFollowedBack.followings.filter(user => currentAccount_toGetFollowedBack.followers.includes(user)); 
 		const currentAccount = await User.findById(req.user.id)
@@ -65,6 +77,7 @@ router.get('/:id', isSignedIn, async (req, res) => {
 				followed = true;
 			}
 			res.render('account/home', {
+				suggestions: suggestions,
 				followed: followed,
 				followedBack: followedBack,
 				numberOfUnseenNotis: numberOfUnseenNotis,
@@ -74,6 +87,7 @@ router.get('/:id', isSignedIn, async (req, res) => {
 			});
 		} else {
 			res.render('account/home', {
+				suggestions: suggestions,
 				followed: true,
 				followedBack: followedBack,
 				numberOfUnseenNotis: numberOfUnseenNotis,
@@ -91,6 +105,7 @@ router.get('/:id', isSignedIn, async (req, res) => {
 router.put('/:id', isSignedIn, async (req, res) => {
 	try {
 		const foundUser = await User.findById(req.params.id)
+		console.log(foundUser);
 		if(req.body.followed == false) {
 			const createdFollow = await Follow.create({from: req.user, to: foundUser});
 			const createdNotification = await Notification.create({follow: createdFollow});

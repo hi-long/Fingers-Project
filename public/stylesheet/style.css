@@ -162,6 +162,10 @@ nav ul .have-after:hover::after {
 	width: 100%;
 }
 
+#friend-suggestions:hover::after {
+	content: 'Suggestions'
+}
+
 #to-creation:hover::after {
 	content: 'Creation';
 }
@@ -174,7 +178,7 @@ nav ul .have-after:hover::after {
 	content: 'Setting';
 }
 
-/* DROPDOWN MENU */
+/* DROPDOWN NOTIFICATION MENU */
 .dropdown-menu {
 	width: 30rem;
 	max-height: 15rem;
@@ -243,6 +247,15 @@ nav ul .have-after:hover::after {
 
 .rotating {
 	-webkit-animation: rotating 0.5s linear infinite;
+}
+
+/* DROPDOWN SUGGESTIONS MENU */
+.suggestions {
+	width: 20rem;
+}
+
+.suggestions .row {
+	margin: 0.5rem 0 !important;
 }
 
 /* ------------------ */
